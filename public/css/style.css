@@ -9,8 +9,6 @@ body {
   color: #111111;
   margin: 40px;
   padding: 0;
-  /* -webkit-filter: grayscale(5%) contrast(102%) blur(0.01px);
-  filter: grayscale(5%) contrast(102%) blur(0.01px); */
 }
 
 a {
@@ -22,51 +20,6 @@ a {
 a:hover {
   text-decoration: underline;
   color: #222222;
-}
-
-/* .project-info p {
-  font-weight: 500;
-  font-size: 12px;
-  margin-bottom: 0;
-  color: #2d2d2d;
-  letter-spacing: 0.01em;
-}
-
-.project-info span {
-  font-size: 11px;
-  color: #666;
-  font-weight: normal;
-} */
-
-/* .project {
-  margin-bottom: 18px;
-  padding: 0;
-  background: none;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-} */
-
-/* .project p {
-  margin: 6px 0 0 0;
-  max-width: 420px;
-  word-wrap: break-word;
-  color: #222;
-} */
-
-.bullet {
-  margin-right: 5px;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1.2;
-}
-
-.bullet svg {
-  width: 8px;
-  height: 8px;
-  opacity: 0.5;
-  fill: #888888;
-  vertical-align: middle;
 }
 
 .projects-section {
@@ -186,7 +139,6 @@ a:hover {
   max-width: 90%;
   max-height: 90%;
   border-radius: 6px;
-  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); */
 }
 
 .lightbox .close {
@@ -197,13 +149,4 @@ a:hover {
   font-weight: bold;
   color: red;
   cursor: pointer;
-}
-
-#blog-link {
-  color: #007BFF;
-  text-decoration: none;
-}
-
-#blog-link:hover {
-  color: #0056b3;
 }
