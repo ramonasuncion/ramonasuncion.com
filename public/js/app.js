@@ -36,9 +36,8 @@ fetch("/data")
   .then((data) => {
     // Name & Email
     document.getElementById("name").textContent = data.name;
-    document.getElementById(
-      "email"
-    ).innerHTML = `<a href="mailto:${data.email}">${data.email}</a>`;
+    document.getElementById("email").innerHTML =
+      `<a href="mailto:${data.email}">${data.email}</a>`;
 
     // Projects
     const projectsSection = document.getElementById("projects-section");
@@ -56,7 +55,11 @@ fetch("/data")
             </h3>
             <p>
               ${proj.description}
-              ${proj.blog ? ` <a id="blog-link" href="${proj.blog}" target="_blank">Learn more</a>` : ""}
+              ${
+                proj.blog
+                  ? ` <a id="blog-link" href="${proj.blog}" target="_blank">Learn more</a>`
+                  : ""
+              }
             </p>
             <span>${proj.tech.join(" · ")}</span>
           </div>
@@ -70,17 +73,46 @@ fetch("/data")
     // Socials
     const socialLinksDiv = document.getElementById("social-links");
     if (data.social_links) {
-      const socialLinksHTML = Object.entries(data.social_links)
-        .flatMap(([platform, links]) =>
-          links.map(
-            (link) =>
-              `<a href="${link}" target="_blank">${
-                platform.charAt(0).toUpperCase() + platform.slice(1)
-              }</a>`
-          )
-        )
-        .join(" ");
-      socialLinksDiv.innerHTML = socialLinksHTML;
+      const isExternal = (u) => {
+        if (!u) return false;
+        try {
+          const r = new URL(u, location.href);
+          return (
+            (r.protocol === "http:" || r.protocol === "https:") &&
+            r.origin !== location.origin
+          );
+        } catch (e) {
+          return false;
+        }
+      };
+
+      const createA = (platform, link) => {
+        const obj = typeof link === "string" ? { url: link } : link || {};
+        const url = obj.url || "";
+        const label =
+          obj.label || platform.charAt(0).toUpperCase() + platform.slice(1);
+        const a = document.createElement("a");
+        a.href = url;
+        a.textContent = label;
+        const shouldNewTab =
+          obj.new_tab !== undefined ? !!obj.new_tab : isExternal(url);
+        if (shouldNewTab) {
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+        }
+        return a;
+      };
+
+      socialLinksDiv.innerHTML = "";
+      Object.entries(data.social_links).forEach(([platform, links]) => {
+        const list = Array.isArray(links) ? links : [links];
+        list.forEach((lnk, i) => {
+          socialLinksDiv.appendChild(createA(platform, lnk));
+          if (i < list.length - 1)
+            socialLinksDiv.appendChild(document.createTextNode(" "));
+        });
+        socialLinksDiv.appendChild(document.createTextNode(" "));
+      });
     }
   })
   .finally(() => {
