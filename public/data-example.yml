@@ -7,5 +7,10 @@ projects:
     image: ""
     link: ""
 social_links:
+  blog:
+    - url: "/blog.html"
+    # - url: "https://blog.example.com"
+    #   label: "Writing"
+    #   new_tab: true
   github:
     - "https://github.com/UserName"
