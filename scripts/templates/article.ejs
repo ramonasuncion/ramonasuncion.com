@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <img id="logo" src="/images/logo.png" alt="Logo" />
+    <p id="name"><%= authorName %></p>
+    <% if (authorEmail) { %>
+    <p id="email"><a href="mailto:<%= authorEmail %>"><%= authorEmail %></a></p>
+    <% } %>
+    <div class="separator"></div>
+    <h1 class="article-title"><%= title %></h1>
+    <% if (date) { %>
+    <p class="article-meta"><%= date %></p>
+    <% } %>
+    <div class="article-body">
+<%- contentHtml %>
+    </div>
+    <div class="separator"></div>
+    <p style="margin-top:24px;"><a href="/">Back to home</a></p>
+  </body>
+</html>
