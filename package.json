@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "build": "node build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/ramonasuncion/ramonasuncion.com/issues"
   },
-  "homepage": "https://github.com/ramonasuncion/ramonasuncion.com#readme"
+  "homepage": "https://github.com/ramonasuncion/ramonasuncion.com#readme",
+  "dependencies": {
+    "csso": "^5.0.5",
+    "gray-matter": "^4.0.3",
+    "marked": "^17.0.1",
+    "terser": "^5.44.1"
+  }
 }
