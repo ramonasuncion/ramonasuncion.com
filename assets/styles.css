@@ -159,22 +159,32 @@ a:not(.footer-social-links a):focus {
 }
 
 /* Footer social links */
+
+.footer-social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+  font-size: 1.1em !important;
+}
 .footer-social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
   color: #111;
   text-decoration: none;
   transition: color 0.2s;
 }
-
 .footer-social-links a i {
+  font-size: 1.2em;
   color: #111;
   transition: color 0.2s;
 }
-
 .footer-social-links a:hover,
 .footer-social-links a:focus,
 .footer-social-links a:hover i,
 .footer-social-links a:focus i {
-  color: var(--accent);
+  color: #b32d2d;
 }
 
 /* Code blocks */

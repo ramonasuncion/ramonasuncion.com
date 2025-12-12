@@ -28,12 +28,12 @@ function renderPostToHtml(meta, htmlContent) {
 		<link rel="stylesheet" href="../../assets/styles.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
-		     <link
-	      rel="stylesheet"
-	      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-	      crossorigin="anonymous"
-	      referrerpolicy="no-referrer"
-	    />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 	</head>
 	<body>
     <header>
@@ -53,53 +53,23 @@ function renderPostToHtml(meta, htmlContent) {
 				</div>
 			</article>
 		</main>
-		     <footer style="text-align: center; margin-top: 2em">
-        <p
-          class="footer-social-links"
-          style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5em;
-            font-size: 1.1em;
-          "
-        >
+      <footer>
+        <p class="footer-social-links">
           <a
             href="https://github.com/ramonasuncion"
             target="_blank"
             rel="noopener"
             title="GitHub"
-            style="display: inline-flex; align-items: center; gap: 0.3em"
           >
-            <i
-              class="fab fa-github"
-              aria-hidden="true"
-              style="font-size: 1.2em"
-            ></i>
+            <i class="fab fa-github" aria-hidden="true"></i>
             GitHub
           </a>
-          <a
-            href="mailto:asuncionbatista@gmail.com"
-            title="Email"
-            style="display: inline-flex; align-items: center; gap: 0.3em"
-          >
-            <i
-              class="fas fa-envelope"
-              aria-hidden="true"
-              style="font-size: 1.2em"
-            ></i>
+          <a href="mailto:asuncionbatista@gmail.com" title="Email">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
             Email
           </a>
-          <a
-            href="../feed.xml"
-            title="Subscribe (RSS)"
-            style="display: inline-flex; align-items: center; gap: 0.3em"
-          >
-            <i
-              class="fas fa-rss"
-              aria-hidden="true"
-              style="font-size: 1.2em"
-            ></i>
+          <a href="../feed.xml" title="Subscribe (RSS)">
+            <i class="fas fa-rss" aria-hidden="true"></i>
             Subscribe (RSS)
           </a>
         </p>

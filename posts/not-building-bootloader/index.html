@@ -7,12 +7,12 @@
 		<link rel="stylesheet" href="../../assets/styles.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
-		     <link
-	      rel="stylesheet"
-	      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-	      crossorigin="anonymous"
-	      referrerpolicy="no-referrer"
-	    />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 	</head>
 	<body>
     <header>
@@ -26,7 +26,7 @@
 		<main>
 			<article class="post">
             <h2>Don't Build Your Own Boot Loader</h2>
-            <time>Dec 1, 2025</time>
+            <time>Nov 30, 2025</time>
 				<div class="post-content">
 					<p>I have been building my x64 playground OS, <a href="https://github.com/ramonasuncion/ignisOS">ignisOS</a>, on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.</p>
 <p>I started by reading the OSDev wiki on <a href="https://wiki.osdev.org/Rolling_Your_Own_Bootloader">rolling your own bootloader</a>, and it was quite a ride. I spent weeks trying to figure out why my string literals weren&#39;t working, only to discover I was just one sector off from reading the kernel even though everything else loaded correctly. Experiences like this are common in OS development, and you can get stuck on a single problem and never move past it. In the end, I did get a somewhat working bootloader (<a href="https://github.com/ramonasuncion/ignisOS-bootloader">ignisOS-bootloader</a>), but there is a lot missing, and on the kernel side I only have a basic &quot;Hello World.&quot;</p>
@@ -35,53 +35,23 @@
 				</div>
 			</article>
 		</main>
-		     <footer style="text-align: center; margin-top: 2em">
-        <p
-          class="footer-social-links"
-          style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5em;
-            font-size: 1.1em;
-          "
-        >
+      <footer>
+        <p class="footer-social-links">
           <a
             href="https://github.com/ramonasuncion"
             target="_blank"
             rel="noopener"
             title="GitHub"
-            style="display: inline-flex; align-items: center; gap: 0.3em"
           >
-            <i
-              class="fab fa-github"
-              aria-hidden="true"
-              style="font-size: 1.2em"
-            ></i>
+            <i class="fab fa-github" aria-hidden="true"></i>
             GitHub
           </a>
-          <a
-            href="mailto:asuncionbatista@gmail.com"
-            title="Email"
-            style="display: inline-flex; align-items: center; gap: 0.3em"
-          >
-            <i
-              class="fas fa-envelope"
-              aria-hidden="true"
-              style="font-size: 1.2em"
-            ></i>
+          <a href="mailto:asuncionbatista@gmail.com" title="Email">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
             Email
           </a>
-          <a
-            href="../feed.xml"
-            title="Subscribe (RSS)"
-            style="display: inline-flex; align-items: center; gap: 0.3em"
-          >
-            <i
-              class="fas fa-rss"
-              aria-hidden="true"
-              style="font-size: 1.2em"
-            ></i>
+          <a href="../feed.xml" title="Subscribe (RSS)">
+            <i class="fas fa-rss" aria-hidden="true"></i>
             Subscribe (RSS)
           </a>
         </p>
