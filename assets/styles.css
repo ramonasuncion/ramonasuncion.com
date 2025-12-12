@@ -67,6 +67,7 @@ main {
   max-width: var(--max-width);
   margin: 2rem auto;
   padding: 0 1rem;
+  font-size: 1.15rem;
 }
 
 .post {
