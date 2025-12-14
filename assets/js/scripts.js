@@ -2,7 +2,14 @@ async function fetchPosts() {
   try {
     const res = await fetch("/posts/index.json");
     if (!res.ok) throw new Error("Could not fetch posts");
-    const posts = await res.json();
+    let posts;
+    try {
+      posts = await res.json();
+    } catch (err) {
+      const body = await res.text();
+      console.error("Failed to parse /posts/index.json:", err, "body:", body);
+      return;
+    }
     renderPosts(posts);
   } catch (err) {
     console.warn(err);
