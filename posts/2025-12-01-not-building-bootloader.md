@@ -22,11 +22,11 @@ I started by reading the OSDev wiki on [rolling your own bootloader](https://wik
 mov cl, 0x0A
 ```
 
-Call this what this is — skill issue. 
+Call this what this is — skill issue. 🫠
 
 ## Lessons Learned
 
-Experiences like these aren't just limited to working on a bootloader. But there is still a lot missing! What about file system support? Support for ELF? You can spend all your time just working on the bootloader.
+Experiences like these aren't just limited to working on a bootloader. But there is still a lot missing! What about file system support? Support for ELF? 🤔 You can spend all your time just working on the bootloader. 
 
 In the end, I did get a somewhat working bootloader ([ignisOS-bootloader](https://github.com/ramonasuncion/ignisOS-bootloader)), but on the kernel side I only have a basic "Hello World."
 
@@ -44,4 +44,4 @@ void kmain()
 
 **Pro tip: skip the bootloader and focus on the kernel!**
 
-Use an existing bootloader like GRUB, Limine, or another option and move quickly. A boot loader is not part of the OS. It's simply a tool to get the system into a state where the kernel can run, and it can be a major distraction. Only create a custom bootloader if you truly need capabilities that existing solutions do not provide.
+Use an existing bootloader like GRUB, Limine, or another option and move quickly. A boot loader is not part of the OS. It's simply a tool to get the system into a state where the kernel can run, and it can be a major distraction. Only create a custom bootloader if you truly need capabilities that existing solutions don't provide.

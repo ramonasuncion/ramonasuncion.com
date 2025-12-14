@@ -33,9 +33,9 @@
 <p>I have been building my x64 playground OS, <a href="https://github.com/ramonasuncion/ignisOS">ignisOS</a>, on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.</p>
 <p>I started by reading the OSDev wiki on <a href="https://wiki.osdev.org/Rolling_Your_Own_Bootloader">rolling your own bootloader</a>, and it was quite a ride. I spent weeks trying to figure out why my string literals weren&#39;t working, only to discover I was just ONE sector off from reading the kernel even though everything else loaded correctly. </p>
 <figure class="code-block"><pre><code><span class="line"><span class="hl-comment">; Load 10 sectors (was 9) from disk</span></span>
-<span class="line"><span class="hl-keyword">mov</span> <span class="hl-built_in">cl</span>, <span class="hl-number">0x0A</span></span></code></pre></figure><p>Call this what this is — skill issue. </p>
+<span class="line"><span class="hl-keyword">mov</span> <span class="hl-built_in">cl</span>, <span class="hl-number">0x0A</span></span></code></pre></figure><p>Call this what this is — skill issue. 🫠</p>
 <h2>Lessons Learned</h2>
-<p>Experiences like these aren&#39;t just limited to working on a bootloader. But there is still a lot missing! What about file system support? Support for ELF? You can spend all your time just working on the bootloader.</p>
+<p>Experiences like these aren&#39;t just limited to working on a bootloader. But there is still a lot missing! What about file system support? Support for ELF? 🤔 You can spend all your time just working on the bootloader. </p>
 <p>In the end, I did get a somewhat working bootloader (<a href="https://github.com/ramonasuncion/ignisOS-bootloader">ignisOS-bootloader</a>), but on the kernel side I only have a basic &quot;Hello World.&quot;</p>
 <figure class="code-block"><pre><code><span class="line"><span class="hl-meta">#<span class="hl-keyword">include</span> <span class="hl-string">&quot;drivers/vga.h&quot;</span></span></span>
 <span class="line"></span>
@@ -45,7 +45,7 @@
 <span class="line">    <span class="hl-keyword">for</span> (;;) <span class="hl-keyword">asm</span> <span class="hl-title function_">volatile</span><span class="hl-params">(<span class="hl-string">&quot;hlt&quot;</span>)</span>;</span>
 <span class="line">}</span></code></pre></figure><h2>Recommendation</h2>
 <p><strong>Pro tip: skip the bootloader and focus on the kernel!</strong></p>
-<p>Use an existing bootloader like GRUB, Limine, or another option and move quickly. A boot loader is not part of the OS. It&#39;s simply a tool to get the system into a state where the kernel can run, and it can be a major distraction. Only create a custom bootloader if you truly need capabilities that existing solutions do not provide.</p>
+<p>Use an existing bootloader like GRUB, Limine, or another option and move quickly. A boot loader is not part of the OS. It&#39;s simply a tool to get the system into a state where the kernel can run, and it can be a major distraction. Only create a custom bootloader if you truly need capabilities that existing solutions don&#39;t provide.</p>
 
 				</div>
 			</article>
