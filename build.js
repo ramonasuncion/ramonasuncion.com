@@ -82,6 +82,15 @@ function add_spans(source, language) {
   }
 }
 
+function parseDateLocal(date) {
+  if (!date) return null;
+  // Treat bare YYYY-MM-DD as a local date (avoid UTC shift)
+  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    const [y, m, d] = date.split("-").map((v) => parseInt(v, 10));
+    return new Date(y, m - 1, d);
+  }
+  return new Date(date);
+}
 function highlight_code(source, infostring) {
   // `source` MUST BE a string
   source = String(source);
@@ -149,7 +158,7 @@ function renderPostToHtml(meta, htmlContent) {
   const title = meta.title || "Untitled";
   const date = meta.date || "";
   const formattedDate = date
-    ? new Date(date).toLocaleDateString("en-US", {
+    ? parseDateLocal(date).toLocaleDateString("en-US", {
         year: "numeric",
         month: "short",
         day: "numeric",
@@ -247,7 +256,11 @@ function build() {
     });
   }
 
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  posts.sort((a, b) => {
+    const da = parseDateLocal(a.date);
+    const db = parseDateLocal(b.date);
+    return (db ? db.getTime() : 0) - (da ? da.getTime() : 0);
+  });
   const indexPath = path.join(POSTS_DIR, "index.json");
   fs.writeFileSync(indexPath, JSON.stringify(posts, null, 2), "utf8");
   console.log(`Built ${posts.length} posts`);

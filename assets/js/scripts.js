@@ -9,6 +9,15 @@ async function fetchPosts() {
   }
 }
 
+function parseDateLocal(date) {
+  if (!date) return null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    const [y, m, d] = date.split("-").map((v) => parseInt(v, 10));
+    return new Date(y, m - 1, d);
+  }
+  return new Date(date);
+}
+
 function renderPosts(posts) {
   const container = document.getElementById("posts");
   if (!container) return;
@@ -25,11 +34,14 @@ function renderPosts(posts) {
 
     const time = document.createElement("time");
     time.dateTime = p.date || "";
-    time.textContent = new Date(p.date || "").toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
+    const d = parseDateLocal(p.date || "");
+    time.textContent = d
+      ? d.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      : "";
 
     el.appendChild(h);
     el.appendChild(time);
