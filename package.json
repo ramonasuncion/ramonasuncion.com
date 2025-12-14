@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ramonasuncion/ramonasuncion.com#readme",
   "dependencies": {
     "csso": "^5.0.5",
+    "highlight.js": "^11.8.0",
     "gray-matter": "^4.0.3",
     "marked": "^17.0.1",
     "terser": "^5.44.1"

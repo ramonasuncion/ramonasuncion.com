@@ -2,6 +2,142 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import hljs from "highlight.js";
+
+hljs.configure({ classPrefix: "hl-" });
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function parse_highlight_spec(spec) {
+  if (!spec) return [];
+  return spec.split(",").flatMap((el) => {
+    if (el.includes("-")) {
+      const [los, his] = el.split("-");
+      const lo = parseInt(los, 10);
+      const hi = parseInt(his, 10);
+      return Array.from({ length: hi - lo + 1 }, (_x, i) => lo + i);
+    }
+    return [parseInt(el, 10)];
+  });
+}
+
+function parse_callouts(source) {
+  const res = new Map();
+  let line = 0;
+  const s = String(source);
+  const without_callouts = s.replace(/<(\d)>|\n/g, (m, d) => {
+    if (m === "\n") {
+      line += 1;
+      return m;
+    }
+    const arr = res.get(line) ?? [];
+    arr.push(d);
+    res.set(line, arr);
+    return "";
+  });
+  return [without_callouts, res];
+}
+
+function add_spans_console(source) {
+  let cont = false;
+  const lines = source
+    .trimEnd()
+    .split("\n")
+    .map((line) => {
+      if (cont) {
+        cont = line.endsWith("\\");
+        return `${escapeHtml(line)}\n`;
+      }
+      if (line.startsWith("$ ")) {
+        cont = line.endsWith("\\");
+        return `<span class="hl-title function_">$</span> ${escapeHtml(
+          line.substring(2)
+        )}\n`;
+      }
+      if (line.startsWith("#")) {
+        return `<span class="hl-comment">${escapeHtml(line)}</span>\n`;
+      }
+      return `<span class="hl-output">${escapeHtml(line)}</span>\n`;
+    });
+  return lines.join("");
+}
+
+function add_spans(source, language) {
+  if (!language || language === "adoc") return escapeHtml(source);
+  if (language === "console") return add_spans_console(source);
+  try {
+    if (language && hljs.getLanguage && !hljs.getLanguage(language)) {
+      // fallback to auto-detection
+      const auto = hljs.highlightAuto(source);
+      return auto.value;
+    }
+    const res = hljs.highlight(source, { language, ignoreIllegals: true });
+    return res.value;
+  } catch (e) {
+    console.error(e);
+    console.error(`\n    hljs failed for language=${language}\n`);
+    return escapeHtml(source);
+  }
+}
+
+function highlight_code(source, infostring) {
+  // `source` MUST BE a string
+  source = String(source);
+  const parts = (infostring || "").trim().split(/\s+/);
+  const language = parts[0];
+  const spec = parse_highlight_spec(parts[1]);
+  let src = source;
+  let callouts;
+  [src, callouts] = parse_callouts(src);
+  let highlighted = add_spans(src, language);
+  highlighted = String(highlighted).trimEnd();
+
+  // balance open spans across line breaks
+  const openTags = [];
+  highlighted = highlighted.replace(
+    /(<span [^>]+>)|(<\/span>)|(\n)/g,
+    (match) => {
+      if (match === "\n") {
+        return "</span>".repeat(openTags.length) + "\n" + openTags.join("");
+      }
+
+      if (match === "</span>") {
+        openTags.pop();
+      } else {
+        openTags.push(match);
+      }
+
+      return match;
+    }
+  );
+
+  const lines = highlighted
+    .split("\n")
+    .map((it, idx) => {
+      const cls = spec.includes(idx + 1) ? " hl-line" : "";
+      const calls = (callouts.get(idx) ?? [])
+        .map((it) => `<i class="callout" data-value="${it}"></i>`)
+        .join(" ");
+      return `<span class="line${cls}">${it}${calls}</span>`;
+    })
+    .join("\n");
+
+  return `<figure class="code-block"><pre><code>${lines}</code></pre></figure>`;
+}
+
+const renderer = new marked.Renderer();
+renderer.code = function (code, infostring, escaped) {
+  if (code && typeof code === "object") {
+    const lang = code.lang || "";
+    const meta = code.meta || "";
+    const info = (lang + (meta ? ` ${meta}` : "")).trim();
+    return highlight_code(code.text ?? String(code), info);
+  }
+  return highlight_code(code, infostring);
+};
+marked.use({ renderer });
 
 const POSTS_DIR = path.join(process.cwd(), "posts");
 
@@ -74,7 +210,7 @@ function renderPostToHtml(meta, htmlContent) {
           </a>
         </p>
       </footer>
-    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js"></script>
+    <!-- highlight.js is applied at build time -->
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>

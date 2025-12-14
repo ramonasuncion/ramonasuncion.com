@@ -9,6 +9,7 @@
   --muted: #666;
   --max-width: 720px;
   --code-font-size: 15px;
+  --code-font-size: 18px;
   --code-line-height: 1.45;
   --code-vertical-padding: 1rem;
   --code-horizontal-padding: 0.5rem;
@@ -159,7 +160,6 @@ a:not(.footer-social-links a):focus {
 }
 
 /* Footer social links */
-
 .footer-social-links {
   display: flex;
   justify-content: center;
@@ -167,6 +167,7 @@ a:not(.footer-social-links a):focus {
   gap: 1.5em;
   font-size: 1.1em !important;
 }
+
 .footer-social-links a {
   display: inline-flex;
   align-items: center;
@@ -175,11 +176,13 @@ a:not(.footer-social-links a):focus {
   text-decoration: none;
   transition: color 0.2s;
 }
+
 .footer-social-links a i {
   font-size: 1.2em;
   color: #111;
   transition: color 0.2s;
 }
+
 .footer-social-links a:hover,
 .footer-social-links a:focus,
 .footer-social-links a:hover i,
@@ -210,71 +213,150 @@ pre > code {
   box-sizing: border-box;
 }
 
-.code-wrapper {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 16px;
-  align-items: start;
+/* Highlighting (thanks matklad.github.io) */
+.hl-keyword,
+.hl-literal {
+  color: #000000;
+  font-weight: bold;
 }
 
-.line-numbers {
-  color: var(--muted);
-  text-align: right;
-  padding: var(--code-vertical-padding) var(--code-horizontal-padding);
-  border-right: 1px solid #eaeaea;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  font-size: var(--code-font-size);
-  line-height: var(--code-line-height);
+.hl-type {
+  color: #0086b3;
 }
 
-.line-numbers span {
-  display: block;
-  line-height: var(--code-line-height);
-  min-height: calc(var(--code-line-height) * 1em);
-  padding: 0 6px;
-  font-size: var(--code-font-size);
-  box-sizing: border-box;
+.hl-tag {
+  color: #000080;
 }
 
-/* Highlight.js */
-.hljs {
-  background: transparent;
+.hl-title.function_ {
+  color: #990000;
+  font-weight: bold;
 }
 
-.hljs-comment,
-.hljs-quote {
-  color: #6a737d;
+.hl-title.class_ {
+  color: #445588;
+  font-weight: bold;
+}
+
+.hl-comment {
+  color: #008000;
   font-style: italic;
 }
 
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-doctag,
-.hljs-function {
-  color: var(--accent);
+.hl-built_in,
+.hl-meta {
+  color: #3c5d5d;
+  font-weight: bold;
 }
 
-.hljs-string,
-.hljs-title,
-.hljs-section,
-.hljs-name {
-  color: #2a7b2a;
+.hl-number {
+  color: #009999;
 }
 
-.hljs-number,
-.hljs-meta {
-  color: #1558a9;
+.hl-string {
+  color: #0b6fb5;
 }
 
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-variable,
-.hljs-attr {
-  color: #6a737d;
+.hl-output {
+  color: #2156a5;
 }
 
-.hljs-tag {
-  color: #a33a2f;
+.hl-subst {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.hl-attr,
+.hl-symbol {
+  color: #008080;
+}
+
+.hl-line {
+  background-color: #ffc;
+}
+
+figure.code-block > pre > code {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  overflow-y: clip;
+  counter-reset: line;
+  line-height: 1.2;
+}
+
+figure.code-block > pre > code > .line {
+  counter-increment: line;
+}
+
+figure.code-block > pre > code > .line:before {
+  content: counter(line);
+  display: inline-block;
+  width: 3ch;
+  padding-right: 0.5ch;
+  margin-right: 0.75ch;
+  text-align: right;
+  opacity: 0.45;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+ol.callout {
+  list-style: none;
+  counter-reset: callout;
+}
+
+ol.callout > li {
+  position: relative;
+}
+
+ol.callout > li::before {
+  counter-increment: callout;
+  content: counter(callout);
+  position: absolute;
+  top: 0.2rem;
+  left: -1.1rem;
+}
+
+i.callout::after {
+  content: attr(data-value);
+}
+
+ol.callout > li::before,
+i.callout::after {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-size: 0.75rem;
+  font-weight: bold;
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  border-radius: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.hljs-empty-line {
+  display: inline-block;
+  width: 100%;
+  color: transparent;
+}
+
+.line {
+  display: block;
+}
+
+.line.hl-line {
+  background-color: #ffc;
+}
+
+.callout {
+  display: inline-block;
+}
+
+.has-line-numbers .code-wrapper {
+  align-items: stretch;
+}
+
+.has-line-numbers pre {
+  margin: 0;
 }

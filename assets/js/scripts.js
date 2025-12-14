@@ -40,6 +40,9 @@ function renderPosts(posts) {
 function addLineNumbers() {
   document.querySelectorAll("pre").forEach((pre) => {
     if (pre.dataset.lined) return;
+    if (pre.parentElement && pre.parentElement.classList.contains("code-block"))
+      return;
+    if (pre.querySelector && pre.querySelector(".line")) return;
 
     const codeEl = pre.querySelector("code") || pre;
 
@@ -53,17 +56,8 @@ function addLineNumbers() {
       textLines.pop();
     }
 
-    const wrapper = document.createElement("div");
-    wrapper.className = "code-wrapper";
-
-    const gutter = document.createElement("div");
-    gutter.className = "line-numbers";
-
-    for (let i = 0; i < textLines.length; i++) {
-      const span = document.createElement("span");
-      span.textContent = i + 1;
-      gutter.appendChild(span);
-    }
+    const figure = document.createElement("figure");
+    figure.className = "code-block";
 
     let htmlLines = codeEl.innerHTML.split(/\r\n|\r|\n/);
 
@@ -82,11 +76,16 @@ function addLineNumbers() {
       }
     }
 
+    if (htmlLines.length > 0) {
+      const alreadyWrapped = /^\s*<span[^>]+class=["']?line/.test(htmlLines[0]);
+      if (!alreadyWrapped) {
+        htmlLines = htmlLines.map((ln) => `<span class="line">${ln}</span>`);
+      }
+    }
     codeEl.innerHTML = htmlLines.join("\n");
 
-    pre.parentNode.insertBefore(wrapper, pre);
-    wrapper.appendChild(gutter);
-    wrapper.appendChild(pre);
+    pre.parentNode.insertBefore(figure, pre);
+    figure.appendChild(pre);
 
     pre.dataset.lined = "1";
     pre.classList.add("has-line-numbers");
