@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Don't Build Your Own Boot Loader</title>
+		<title>Don't Build Your Own Bootloader</title>
 		<link rel="stylesheet" href="../../assets/styles.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
@@ -25,12 +25,31 @@
     </header>
 		<main>
 			<article class="post">
-            <h2>Don't Build Your Own Boot Loader</h2>
-            <time>Nov 30, 2025</time>
+            <h2>Don't Build Your Own Bootloader</h2>
+            <time>Dec 1, 2025</time>
 				<div class="post-content">
-					<p>I have been building my x64 playground OS, <a href="https://github.com/ramonasuncion/ignisOS">ignisOS</a>, on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.</p>
-<p>I started by reading the OSDev wiki on <a href="https://wiki.osdev.org/Rolling_Your_Own_Bootloader">rolling your own bootloader</a>, and it was quite a ride. I spent weeks trying to figure out why my string literals weren&#39;t working, only to discover I was just one sector off from reading the kernel even though everything else loaded correctly. Experiences like this are common in OS development, and you can get stuck on a single problem and never move past it. In the end, I did get a somewhat working bootloader (<a href="https://github.com/ramonasuncion/ignisOS-bootloader">ignisOS-bootloader</a>), but there is a lot missing, and on the kernel side I only have a basic &quot;Hello World.&quot;</p>
-<p>If your goal is building an operating system, skip the bootloader and focus on the kernel. Use an existing bootloader like GRUB, Limine, or another option. A bootloader is not part of the OS. It is simply a tool to get the system into a state where the kernel can run, and it can be a major distraction. Only create a custom bootloader if you truly need capabilities that existing solutions do not provide.</p>
+					<p>My experience building a small bootloader.</p>
+<h2>Journey</h2>
+<p>I have been building my x64 playground OS, <a href="https://github.com/ramonasuncion/ignisOS">ignisOS</a>, on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.</p>
+<p>I started by reading the OSDev wiki on <a href="https://wiki.osdev.org/Rolling_Your_Own_Bootloader">rolling your own bootloader</a>, and it was quite a ride. I spent weeks trying to figure out why my string literals weren&#39;t working, only to discover I was just ONE sector off from reading the kernel even though everything else loaded correctly. </p>
+<pre><code class="language-nasm">; Load 10 sectors (was 9) from disk
+mov cl, 0x0A
+</code></pre>
+<p>Call this what this is — skill issue. </p>
+<h2>Lessons Learned</h2>
+<p>Experiences like these aren&#39;t just limited to working on a bootloader. But there is still a lot missing! What about file system support? Support for ELF? You can spend all your time just working on the bootloader.</p>
+<p>In the end, I did get a somewhat working bootloader (<a href="https://github.com/ramonasuncion/ignisOS-bootloader">ignisOS-bootloader</a>), but on the kernel side I only have a basic &quot;Hello World.&quot;</p>
+<pre><code class="language-c">#include &quot;drivers/vga.h&quot;
+
+void kmain()
+{
+    kprint(&quot;Hello, world!&quot;);
+    for (;;) asm volatile(&quot;hlt&quot;);
+}
+</code></pre>
+<h2>Recommendation</h2>
+<p><strong>Pro tip: skip the bootloader and focus on the kernel!</strong></p>
+<p>Use an existing bootloader like GRUB, Limine, or another option and move quickly. A boot loader is not part of the OS. It&#39;s simply a tool to get the system into a state where the kernel can run, and it can be a major distraction. Only create a custom bootloader if you truly need capabilities that existing solutions do not provide.</p>
 
 				</div>
 			</article>
