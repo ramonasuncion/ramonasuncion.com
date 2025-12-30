@@ -26,7 +26,7 @@ Call this what this is — skill issue. 🫠
 
 ## Lessons Learned
 
-Experiences like these aren't just limited to working on a bootloader. But there is still a lot missing! What about file system support? Support for ELF? 🤔 You can spend all your time just working on the bootloader. 
+Well, you'll encounter issues like these when working on an OS. But this bootloader is far from being complete. What about file system support? Support for ELF? 🤔 You can spend all your time just working on the bootloader. That's where it hit me: is this where all my effort should go?
 
 In the end, I did get a somewhat working bootloader ([ignisOS-bootloader](https://github.com/ramonasuncion/ignisOS-bootloader)), but on the kernel side I only have a basic "Hello World."
 
