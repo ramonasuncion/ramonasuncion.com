@@ -10,6 +10,19 @@ function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+function escapeXml(s) {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+const SITE_URL = "https://ramonasuncion.com";
+const SITE_TITLE = "Ramon Asuncion";
+const SITE_DESCRIPTION = "Ramon Asuncion's blog";
+
 function parse_highlight_spec(spec) {
   if (!spec) return [];
   return spec.split(",").flatMap((el) => {
@@ -53,7 +66,7 @@ function add_spans_console(source) {
       if (line.startsWith("$ ")) {
         cont = line.endsWith("\\");
         return `<span class="hl-title function_">$</span> ${escapeHtml(
-          line.substring(2)
+          line.substring(2),
         )}\n`;
       }
       if (line.startsWith("#")) {
@@ -119,7 +132,7 @@ function highlight_code(source, infostring) {
       }
 
       return match;
-    }
+    },
   );
 
   const lines = highlighted
@@ -154,6 +167,35 @@ function readMarkdownFiles(dir) {
   return fs.readdirSync(dir).filter((f) => f.endsWith(".md"));
 }
 
+function generateRssFeed(posts) {
+  const items = posts
+    .map((p) => {
+      const pubDate = p.date
+        ? parseDateLocal(p.date).toUTCString()
+        : new Date().toUTCString();
+      return `    <item>
+      <title>${escapeXml(p.title)}</title>
+      <link>${SITE_URL}/${p.url}</link>
+      <guid>${SITE_URL}/${p.url}</guid>
+      <pubDate>${pubDate}</pubDate>
+      <description>${escapeXml(p.excerpt || p.title)}</description>
+    </item>`;
+    })
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${escapeXml(SITE_TITLE)}</title>
+    <link>${SITE_URL}</link>
+    <description>${escapeXml(SITE_DESCRIPTION)}</description>
+    <language>en-us</language>
+    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
+${items}
+  </channel>
+</rss>`;
+}
+
 function renderPostToHtml(meta, htmlContent) {
   const title = meta.title || "Untitled";
   const date = meta.date || "";
@@ -165,7 +207,7 @@ function renderPostToHtml(meta, htmlContent) {
       })
     : "";
   const out = `<!doctype html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -213,7 +255,7 @@ function renderPostToHtml(meta, htmlContent) {
             <i class="fas fa-envelope" aria-hidden="true"></i>
             Email
           </a>
-          <a href="../feed.xml" title="Subscribe (RSS)">
+          <a href="/feed.xml" title="Subscribe (RSS)">
             <i class="fas fa-rss" aria-hidden="true"></i>
             Subscribe (RSS)
           </a>
@@ -253,6 +295,7 @@ function build() {
       date: data.date || "",
       slug,
       url: `posts/${slug}/`,
+      excerpt: data.excerpt || "",
     });
   }
 
@@ -263,6 +306,10 @@ function build() {
   });
   const indexPath = path.join(POSTS_DIR, "index.json");
   fs.writeFileSync(indexPath, JSON.stringify(posts, null, 2), "utf8");
+
+  const feedPath = path.join(process.cwd(), "feed.xml");
+  fs.writeFileSync(feedPath, generateRssFeed(posts), "utf8");
+
   console.log(`Built ${posts.length} posts`);
 }
 

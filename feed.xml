@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ramon Asuncion</title>
+    <link>https://ramonasuncion.com</link>
+    <description>Ramon Asuncion&apos;s blog</description>
+    <language>en-us</language>
+    <atom:link href="https://ramonasuncion.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>What are Quines?</title>
+      <link>https://ramonasuncion.com/posts/what-are-quines/</link>
+      <guid>https://ramonasuncion.com/posts/what-are-quines/</guid>
+      <pubDate>Mon, 26 Jan 2026 05:00:00 GMT</pubDate>
+      <description>What are Quines?</description>
+    </item>
+    <item>
+      <title>Don&apos;t Build Your Own Bootloader</title>
+      <link>https://ramonasuncion.com/posts/not-building-bootloader/</link>
+      <guid>https://ramonasuncion.com/posts/not-building-bootloader/</guid>
+      <pubDate>Mon, 01 Dec 2025 05:00:00 GMT</pubDate>
+      <description>Why building your own bootloader is usually not worth the trade-offs.</description>
+    </item>
+  </channel>
+</rss>
