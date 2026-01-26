@@ -7,6 +7,10 @@
   "scripts": {
     "clean": "rm -rf posts/*/ posts/index.json || true",
     "build": "npm run clean && node build.js",
+    "lint:html": "html-validate 'index.html' 'about/' 'links/' 'blogroll/' 'posts/*/'",
+    "purge:css": "purgecss --css assets/styles.css --content '*.html' 'about/*.html' 'links/*.html' 'blogroll/*.html' 'posts/*/*.html' 'assets/js/*.js' --output assets/",
+    "format": "prettier --write '**/*.{js,html,css,json,md}'",
+    "format:check": "prettier --check '**/*.{js,html,css,json,md}'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,9 +25,14 @@
   "homepage": "https://github.com/ramonasuncion/ramonasuncion.com#readme",
   "dependencies": {
     "csso": "^5.0.5",
-    "highlight.js": "^11.8.0",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.8.0",
     "marked": "^17.0.1",
     "terser": "^5.44.1"
+  },
+  "devDependencies": {
+    "html-validate": "^10.7.0",
+    "prettier": "^3.8.1",
+    "purgecss": "^8.0.0"
   }
 }
