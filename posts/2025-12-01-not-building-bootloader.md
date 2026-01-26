@@ -15,14 +15,14 @@ My experience building a small bootloader.
 
 I have been building my x64 playground OS, [ignisOS](https://github.com/ramonasuncion/ignisOS), on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.
 
-I started by reading the OSDev wiki on [rolling your own bootloader](https://wiki.osdev.org/Rolling_Your_Own_Bootloader), and it was quite a ride. I spent weeks trying to figure out why my string literals weren't working, only to discover I was just ONE sector off from reading the kernel even though everything else loaded correctly. 
+I started by reading the OSDev wiki on [rolling your own bootloader](https://wiki.osdev.org/Rolling_Your_Own_Bootloader), and it was quite a ride. I spent weeks trying to figure out why my string literals weren't working, only to discover I was just ONE sector off from reading the kernel even though everything else loaded correctly.
 
 ```nasm
 ; Load 10 sectors (was 9) from disk
 mov cl, 0x0A
 ```
 
-Call this what this is — skill issue. 🫠
+Call this what this is—skill issue. 🫠
 
 ## Lessons Learned
 

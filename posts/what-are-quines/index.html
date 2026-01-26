@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>What are Quines?</title>
+		<link rel="stylesheet" href="../../assets/styles.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+	</head>
+	<body>
+    <header>
+      <h1><a href="/">Ramon Asuncion</a></h1>
+      <nav>
+        <a href="/about/">About</a>
+        <a href="/links/">Links</a>
+        <a href="/blogroll/">Blogroll</a>
+      </nav>
+    </header>
+		<main>
+			<article class="post">
+            <h2>What are Quines?</h2>
+            <time>Jan 26, 2026</time>
+				<div class="post-content">
+					<p>I was watching a video the other day by the creator Tsoding about <a href="https://www.youtube.com/watch?v=QGm-d5Ch5JM">Quines</a>. I highly recommend you watch the video.</p>
+<p>But to give you a quick summary, a <strong><a href="https://en.wikipedia.org/wiki/Quine_(computing)">quine</a></strong> is a program that outputs its own source code as its only output.</p>
+<h2>The Goal</h2>
+<p>The question is: How can a program out its own source without being told what that source is?</p>
+<p>You need to write a program that contains two things:</p>
+<ol>
+<li>String representation of itself</li>
+<li>Code that prints a string representation of itself</li>
+</ol>
+<p>You can find a bunch of quine programs <a href="https://cs.lmu.edu/~ray/notes/quineprograms/">here</a>, but I’ll be covering some below.</p>
+<h2>Simple Quine in Python</h2>
+<figure class="code-block"><pre><code><span class="line">s = <span class="hl-string">&#x27;s = %r\nprint(s %% s)&#x27;</span></span>
+<span class="line"><span class="hl-built_in">print</span>(s % s)</span></code></pre></figure><p>The output? The exact same thing!</p>
+<figure class="code-block"><pre><code><span class="line">s = <span class="hl-string">&#x27;s = %r\nprint(s %% s)&#x27;</span></span>
+<span class="line"><span class="hl-built_in">print</span>(s % s)</span></code></pre></figure><p>You should try it! Open up <code>ipython</code> and paste in the exact code. (side note, this gives a good idea for my website—users should be able to run code snippets)</p>
+<h2>How it’s Made</h2>
+<ol>
+<li>The string <code>s</code> contains a template with <code>%r</code> (repr format)</li>
+<li><code>print(s % s)</code> substitutes <code>s</code> into its own template</li>
+<li>You get the program’s source code</li>
+</ol>
+<p>If you want to learn more, I suggest reading the <a href="https://en.wikipedia.org/wiki/Quine_(computing)#Multiquines">Wikipedia article</a> on the different types of quines.</p>
+
+				</div>
+			</article>
+		</main>
+      <footer>
+        <p class="footer-social-links">
+          <a
+            href="https://github.com/ramonasuncion"
+            target="_blank"
+            rel="noopener"
+            title="GitHub"
+          >
+            <i class="fab fa-github" aria-hidden="true"></i>
+            GitHub
+          </a>
+          <a href="mailto:asuncionbatista@gmail.com" title="Email">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            Email
+          </a>
+          <a href="/feed.xml" title="Subscribe (RSS)">
+            <i class="fas fa-rss" aria-hidden="true"></i>
+            Subscribe (RSS)
+          </a>
+        </p>
+      </footer>
+    <!-- highlight.js is applied at build time -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="../../assets/js/scripts.js"></script>
+	</body>
+</html>
