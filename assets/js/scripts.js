@@ -59,7 +59,10 @@ function renderPosts(posts) {
 function addLineNumbers() {
   document.querySelectorAll("pre").forEach((pre) => {
     if (pre.dataset.lined) return;
-    if (pre.parentElement && pre.parentElement.classList.contains("code-block"))
+    if (
+      pre.parentElement &&
+      pre.parentElement.classList.contains("code-block")
+    )
       return;
     if (pre.querySelector && pre.querySelector(".line")) return;
 
@@ -71,7 +74,10 @@ function addLineNumbers() {
     const raw = codeEl.textContent || "";
     let textLines = raw.split(/\r\n|\r|\n/);
 
-    if (textLines.length > 1 && textLines[textLines.length - 1].trim() === "") {
+    if (
+      textLines.length > 1 &&
+      textLines[textLines.length - 1].trim() === ""
+    ) {
       textLines.pop();
     }
 
@@ -96,7 +102,9 @@ function addLineNumbers() {
     }
 
     if (htmlLines.length > 0) {
-      const alreadyWrapped = /^\s*<span[^>]+class=["']?line/.test(htmlLines[0]);
+      const alreadyWrapped = /^\s*<span[^>]+class=["']?line/.test(
+        htmlLines[0],
+      );
       if (!alreadyWrapped) {
         htmlLines = htmlLines.map((ln) => `<span class="line">${ln}</span>`);
       }
