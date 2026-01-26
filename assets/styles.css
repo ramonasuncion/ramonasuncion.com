@@ -11,8 +11,6 @@
   --code-font-size: 15px;
   --code-font-size: 18px;
   --code-line-height: 1.45;
-  --code-vertical-padding: 1rem;
-  --code-horizontal-padding: 0.5rem;
 }
 
 /* Global styles */
@@ -159,6 +157,11 @@ a:not(.footer-social-links a):focus {
   text-underline-offset: 2px;
 }
 
+/* Footer */
+footer {
+  padding-bottom: 1rem;
+}
+
 /* Footer social links */
 .footer-social-links {
   display: flex;
@@ -190,6 +193,30 @@ a:not(.footer-social-links a):focus {
   color: #b32d2d;
 }
 
+/* Images and videos */
+
+video {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+
+
+figure > video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Inline code */
+:not(pre) > code {
+  font-family:
+    "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+    monospace;
+  font-size: 0.8em;
+}
+
 /* Code blocks */
 pre {
   background: transparent;
@@ -204,18 +231,18 @@ pre {
 
 pre > code {
   display: block;
-  font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
-    "Roboto Mono", monospace;
+  font-family:
+    "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+    monospace;
   font-size: var(--code-font-size);
   line-height: var(--code-line-height);
-  padding: var(--code-vertical-padding) var(--code-horizontal-padding);
+  padding: 0;
   white-space: pre;
   box-sizing: border-box;
 }
 
 /* Highlighting (thanks matklad.github.io) */
-.hl-keyword,
-.hl-literal {
+.hl-keyword {
   color: #000000;
   font-weight: bold;
 }
@@ -224,17 +251,8 @@ pre > code {
   color: #0086b3;
 }
 
-.hl-tag {
-  color: #000080;
-}
-
 .hl-title.function_ {
   color: #990000;
-  font-weight: bold;
-}
-
-.hl-title.class_ {
-  color: #445588;
   font-weight: bold;
 }
 
@@ -257,21 +275,9 @@ pre > code {
   color: #0b6fb5;
 }
 
-.hl-output {
-  color: #2156a5;
-}
-
-.hl-subst {
-  color: rgba(0, 0, 0, 0.9);
-}
-
-.hl-attr,
-.hl-symbol {
-  color: #008080;
-}
-
-.hl-line {
-  background-color: #ffc;
+figure.code-block {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 figure.code-block > pre > code {
@@ -281,6 +287,7 @@ figure.code-block > pre > code {
   overflow-y: clip;
   counter-reset: line;
   line-height: 1.2;
+  padding: 0;
 }
 
 figure.code-block > pre > code > .line {
@@ -298,43 +305,6 @@ figure.code-block > pre > code > .line:before {
   border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-ol.callout {
-  list-style: none;
-  counter-reset: callout;
-}
-
-ol.callout > li {
-  position: relative;
-}
-
-ol.callout > li::before {
-  counter-increment: callout;
-  content: counter(callout);
-  position: absolute;
-  top: 0.2rem;
-  left: -1.1rem;
-}
-
-i.callout::after {
-  content: attr(data-value);
-}
-
-ol.callout > li::before,
-i.callout::after {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-size: 0.75rem;
-  font-weight: bold;
-  display: inline-block;
-  width: 0.9rem;
-  height: 0.9rem;
-  line-height: 0.9rem;
-  border-radius: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
-}
-
 .hljs-empty-line {
   display: inline-block;
   width: 100%;
@@ -343,18 +313,6 @@ i.callout::after {
 
 .line {
   display: block;
-}
-
-.line.hl-line {
-  background-color: #ffc;
-}
-
-.callout {
-  display: inline-block;
-}
-
-.has-line-numbers .code-wrapper {
-  align-items: stretch;
 }
 
 .has-line-numbers pre {
