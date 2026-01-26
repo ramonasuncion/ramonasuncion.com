@@ -31,13 +31,13 @@
 					<p>I was watching a video the other day by the creator Tsoding about <a href="https://www.youtube.com/watch?v=QGm-d5Ch5JM">Quines</a>. I highly recommend you watch the video.</p>
 <p>But to give you a quick summary, a <strong><a href="https://en.wikipedia.org/wiki/Quine_(computing)">quine</a></strong> is a program that outputs its own source code as its only output.</p>
 <h2>The Goal</h2>
-<p>The question is: How can a program out its own source without being told what that source is?</p>
+<p>The question is: How can a program output its own source without being told what that source is?</p>
 <p>You need to write a program that contains two things:</p>
 <ol>
 <li>String representation of itself</li>
 <li>Code that prints a string representation of itself</li>
 </ol>
-<p>You can find a bunch of quine programs <a href="https://cs.lmu.edu/~ray/notes/quineprograms/">here</a>, but I’ll be covering some below.</p>
+<p>You can find a bunch of quine programs <a href="https://cs.lmu.edu/~ray/notes/quineprograms/">here</a>, but I’ll be covering Python below.</p>
 <h2>Simple Quine in Python</h2>
 <figure class="code-block"><pre><code><span class="line">s = <span class="hl-string">&#x27;s = %r\nprint(s %% s)&#x27;</span></span>
 <span class="line"><span class="hl-built_in">print</span>(s % s)</span></code></pre></figure><p>The output? The exact same thing!</p>
