@@ -7,6 +7,13 @@
     <language>en-us</language>
     <atom:link href="https://ramonasuncion.com/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>Syntax is a Trap</title>
+      <link>https://ramonasuncion.com/posts/syntax-is-a-trap/</link>
+      <guid>https://ramonasuncion.com/posts/syntax-is-a-trap/</guid>
+      <pubDate>Fri, 13 Feb 2026 05:00:00 GMT</pubDate>
+      <description>Syntax is a Trap</description>
+    </item>
+    <item>
       <title>What are Quines?</title>
       <link>https://ramonasuncion.com/posts/what-are-quines/</link>
       <guid>https://ramonasuncion.com/posts/what-are-quines/</guid>

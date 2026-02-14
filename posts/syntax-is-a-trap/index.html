@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Syntax is a Trap</title>
+		<link rel="stylesheet" href="../../assets/styles.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+	</head>
+	<body>
+    <header>
+      <h1><a href="/">Ramon Asuncion</a></h1>
+      <nav>
+        <a href="/about/">About</a>
+        <a href="/links/">Links</a>
+        <a href="/blogroll/">Blogroll</a>
+      </nav>
+    </header>
+		<main>
+			<article class="post">
+            <h2>Syntax is a Trap</h2>
+            <time>Feb 13, 2026</time>
+				<div class="post-content">
+					<p>I’ve been designing a new system language called <strong><a href="https://github.com/ripe-lang">Ripe</a></strong>, and I’ve fallen into a trap of trying to invent a ‘unique’ syntax for my language before I’ve written a line of code. I’m writing this so you don’t waste as much time as I did. 🥲</p>
+<p>Syntax uniqueness doesn’t exist and doesn&#39;t matter. Every language shares some commonality with others: braces for blocks, parentheses for calls, and colons or keywords for types. This is done on purpose. If someone picks up your language, the last thing they want to find out is you&#39;ve replaced curly braces for blocks with square brackets just to be different (sorry esolangs). Don&#39;t fight decades of muscle memory.</p>
+<p>The truth is, there are only so many readable ways to write: <code>variable [something] type [something] value</code></p>
+<p>You can do:</p>
+<ul>
+<li><code>int x = 42</code> (C)</li>
+<li><code>let x: int = 42</code> (Rust)</li>
+<li><code>var x int = 42</code> (Go)</li>
+</ul>
+<p>And how Ripe is going to do it: <code>let x: int = 42</code>.</p>
+<p>What actually makes languages different is not the syntax, but the <strong>semantics</strong>.</p>
+<ul>
+<li><strong>Zig</strong> has no hidden allocations.</li>
+<li><strong>Rust</strong> has an ownership system.</li>
+<li><strong>Go</strong> has goroutines and interfaces.</li>
+</ul>
+<p>You see? 👀 Your language will be different because of how you handle memory, how you manage errors, and what you forbid—not because you used a <code>:</code> to define a variable.</p>
+<p>So, go get the compiler working! The language design will reveal itself when you actually start using it. Now, I’m off to build the lexer. I&#39;m starting with this:</p>
+<figure class="code-block"><pre><code><span class="line">func <span class="hl-title function_">main</span><span class="hl-params">()</span>: <span class="hl-type">int</span> {</span>
+<span class="line">    <span class="hl-keyword">return</span> <span class="hl-number">42</span></span>
+<span class="line">}</span></code></pre></figure><p>My road map is simple:</p>
+<ul>
+<li>Integer types</li>
+<li>Variables</li>
+<li>Return type</li>
+<li>One function</li>
+</ul>
+<p>As the weeks go on, I’ll add expressions, control flow, and loops. From there, I can start figuring out what I really want this language to be: string handling, memory management, pointers, structs, and generics.</p>
+<p>But for now, just getting integers working is my main focus. One last thing: early on, <strong>transpile to C</strong>. It saves you from getting stuck in LLVM boilerplate before you’ve even gotten a basic &#39;Hello World&#39; to run. Godspeed. 😎</p>
+
+				</div>
+			</article>
+		</main>
+      <footer>
+        <p class="footer-social-links">
+          <a
+            href="https://github.com/ramonasuncion"
+            target="_blank"
+            rel="noopener"
+            title="GitHub"
+          >
+            <i class="fab fa-github" aria-hidden="true"></i>
+            GitHub
+          </a>
+          <a href="mailto:asuncionbatista@gmail.com" title="Email">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            Email
+          </a>
+          <a href="/feed.xml" title="Subscribe (RSS)">
+            <i class="fas fa-rss" aria-hidden="true"></i>
+            Subscribe (RSS)
+          </a>
+        </p>
+      </footer>
+    <!-- highlight.js is applied at build time -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="../../assets/js/scripts.js"></script>
+	</body>
+</html>
