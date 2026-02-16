@@ -4,13 +4,14 @@ date: "2026-02-13"
 slug: syntax-is-a-trap
 ---
 
-I’ve been designing a new system language called **[Ripe](https://github.com/ripe-lang)**, and I’ve fallen into a trap of trying to invent a ‘unique’ syntax for my language before I’ve written a line of code. I’m writing this so you don’t waste as much time as I did. 🥲
+I’ve been designing a new system language called [Ripe](https://github.com/ripe-lang), and I’ve fallen into a trap of trying to invent a ‘unique’ syntax for my language before I’ve written a line of code. I’m writing this so you don’t waste as much time as I did. 🥲
 
 Syntax uniqueness doesn’t exist and doesn't matter. Every language shares some commonality with others: braces for blocks, parentheses for calls, and colons or keywords for types. This is done on purpose. If someone picks up your language, the last thing they want to find out is that you've replaced curly braces for blocks with square brackets just to be different. Sorry, esolangs.
 
 The truth is, there are only so many readable ways to write: `variable [something] type [something] value`
 
 You can do:
+
 - `int x = 42` (C)
 - `let x: int = 42` (Rust)
 - `var x int = 42` (Go)
@@ -18,6 +19,7 @@ You can do:
 And how Ripe is going to do it: `let x: int = 42`.
 
 What actually makes languages different is not the syntax, but the **semantics**.
+
 - **Zig** has no hidden allocations.
 - **Rust** has an ownership system.
 - **Go** has goroutines and interfaces.
@@ -33,6 +35,7 @@ func main(): int {
 ```
 
 My road map is simple:
+
 - Integer types
 - Variables
 - Return type
