@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Making the Switch to Emacs</title>
+		<link rel="stylesheet" href="../../assets/styles.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+	</head>
+	<body>
+    <header>
+      <h1><a href="/">Ramon Asuncion</a></h1>
+      <nav>
+        <a href="/about/">About</a>
+        <a href="/links/">Links</a>
+        <a href="/blogroll/">Blogroll</a>
+      </nav>
+    </header>
+		<main>
+			<article class="post">
+            <h2>Making the Switch to Emacs</h2>
+            <time>Feb 16, 2026</time>
+				<div class="post-content">
+					<p>I&#39;ve been using <a href="https://neovim.io/">Neovim</a> for the past 3 years during my undergrad. But I&#39;m making the switch to Emacs. Why? Why not. I&#39;m still going to use Vim for basic edits since I use Emacs in GUI mode, but for any sort of systems programming, I think I&#39;m going to give Emacs a try. I am hesitant to say full-time because I do still use VSCode for any sort of web development. But who knows. I might move that over too.</p>
+<p>If you want plan on using my dotfiles they&#39;re on my <a href="https://github.com/ramonasuncion/.dotfiles">github</a>. Just remember to update:</p>
+<figure class="code-block"><pre><code><span class="line">M-x elpaca-update-all</span></code></pre></figure><p>The keybinds I use:</p>
+<h2>Basics</h2>
+<p>How I navigate in Emacs.</p>
+<ul>
+<li><code>C-x C-f</code>: open a file (you can create files too)</li>
+<li><code>C-x b</code>: switch buffer</li>
+<li><code>C-x k</code>: kill buffer</li>
+<li><code>C-x 0</code>: close current window</li>
+<li><code>C-x 1</code>: close all other windows</li>
+<li><code>C-x 2</code>: split horizontal</li>
+<li><code>C-x 3</code>: split vertical</li>
+<li><code>C-x o</code>: switch window</li>
+<li><code>C-w h/j/k/l</code>: switch window (evil)</li>
+<li><code>C-x d</code>: open dired (file manager)</li>
+<li><code>C-x C-m</code>: execute command (M-x)</li>
+</ul>
+<p>Everything below isn&#39;t important for normal programming, but they are part of my workflow to be make me a 100x developer with file navigation, git, and building and running.</p>
+<h2>File Navigation</h2>
+<ul>
+<li><code>C-c e</code>: recent files</li>
+<li><code>C-c s</code>: search lines in buffer (consult-line)</li>
+<li><code>C-c S</code>: search lines in buffer (consult-grep)</li>
+<li><code>F5</code>: deadgrep (ripgrep serach)</li>
+<li><code>C-c f</code>: copy current file path</li>
+<li><code>C-c d</code>: copy current dir path</li>
+</ul>
+<h2>Dired</h2>
+<p>If there is one thing I love in this world more than salted caramel is Dired.</p>
+<ul>
+<li><code>Enter</code>: open file/dir</li>
+<li><code>^</code>: go up a dir</li>
+<li><code>+</code>: create a dir</li>
+<li><code>d</code>: mark for deletion</li>
+<li><code>x</code>: execute deletions</li>
+<li><code>R</code>: rename/move</li>
+<li><code>C</code>: copy</li>
+</ul>
+<h2>Magit</h2>
+<p>I&#39;m still opening up a separate terminal and using git time to time. I&#39;ll learn this eventually.</p>
+<ul>
+<li><code>C-x g</code>: magit status</li>
+<li><code>s</code>: stage file/hunk (in magit)</li>
+<li><code>u</code>: unstage</li>
+<li><code>c c</code>: commit</li>
+<li><code>P p</code>: push</li>
+<li><code>F p</code>: pull</li>
+<li><code>b b</code>: switch branch</li>
+<li><code>l l</code>: log</li>
+<li><code>d d</code>: diff</li>
+</ul>
+<h2>Building and Running</h2>
+<p>I&#39;m typically programming in C++ and C, so I set it up to build Make/CMake.</p>
+<ul>
+<li><code>C-c b</code>: build project</li>
+<li><code>C-c r</code>: run project</li>
+<li><code>F7</code>: recompile</li>
+<li><code>C-c t</code>: open terminal in project root</li>
+</ul>
+<h2>Errors</h2>
+<p>To hop between live LSP errors:</p>
+<ul>
+<li><code>]d/[d</code> next error / prev error</li>
+</ul>
+<p>And in the build/compile errors when building the project after running <code>C-c b</code> / <code>F7</code>:</p>
+<ul>
+<li><code>M-g n/M-g p</code> (next-error/previous-error)</li>
+</ul>
+<p>I&#39;m leaving out multiple cursors since I&#39;m testing a set of keybinds.</p>
+
+				</div>
+			</article>
+		</main>
+      <footer>
+        <p class="footer-social-links">
+          <a
+            href="https://github.com/ramonasuncion"
+            target="_blank"
+            rel="noopener"
+            title="GitHub"
+          >
+            <i class="fab fa-github" aria-hidden="true"></i>
+            GitHub
+          </a>
+          <a href="mailto:asuncionbatista@gmail.com" title="Email">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            Email
+          </a>
+          <a href="/feed.xml" title="Subscribe (RSS)">
+            <i class="fas fa-rss" aria-hidden="true"></i>
+            Subscribe (RSS)
+          </a>
+        </p>
+      </footer>
+    <!-- highlight.js is applied at build time -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="../../assets/js/scripts.js"></script>
+	</body>
+</html>
