@@ -6,7 +6,7 @@ slug: syntax-is-a-trap
 
 I’ve been designing a new system language called **[Ripe](https://github.com/ripe-lang)**, and I’ve fallen into a trap of trying to invent a ‘unique’ syntax for my language before I’ve written a line of code. I’m writing this so you don’t waste as much time as I did. 🥲
 
-Syntax uniqueness doesn’t exist and doesn't matter. Every language shares some commonality with others: braces for blocks, parentheses for calls, and colons or keywords for types. This is done on purpose. If someone picks up your language, the last thing they want to find out is that you've replaced curly braces for blocks with square brackets just to be different. Sorry, esolangs. Don't fight decades of muscle memory.
+Syntax uniqueness doesn’t exist and doesn't matter. Every language shares some commonality with others: braces for blocks, parentheses for calls, and colons or keywords for types. This is done on purpose. If someone picks up your language, the last thing they want to find out is that you've replaced curly braces for blocks with square brackets just to be different. Sorry, esolangs.
 
 The truth is, there are only so many readable ways to write: `variable [something] type [something] value`
 
