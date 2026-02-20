@@ -1,12 +1,10 @@
 ---
 title: "Don't Build Your Own Bootloader"
-date: "2025-12-01"
 tags:
   - bootloader
   - systems
   - opinion
 slug: not-building-bootloader
-excerpt: "Why building your own bootloader is usually not worth the trade-offs."
 ---
 
 My experience building a small bootloader.

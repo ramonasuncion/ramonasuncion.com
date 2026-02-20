@@ -1,38 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Ramon Asuncion</title>
-    <link>https://ramonasuncion.com</link>
-    <description>Ramon Asuncion&apos;s blog</description>
-    <language>en-us</language>
-    <atom:link href="https://ramonasuncion.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <item>
-      <title>Making the Switch to Emacs</title>
-      <link>https://ramonasuncion.com/posts/making-the-switch-to-emacs/</link>
-      <guid>https://ramonasuncion.com/posts/making-the-switch-to-emacs/</guid>
-      <pubDate>Mon, 16 Feb 2026 05:00:00 GMT</pubDate>
-      <description>Making the Switch to Emacs</description>
-    </item>
-    <item>
-      <title>Syntax is a Trap</title>
-      <link>https://ramonasuncion.com/posts/syntax-is-a-trap/</link>
-      <guid>https://ramonasuncion.com/posts/syntax-is-a-trap/</guid>
-      <pubDate>Fri, 13 Feb 2026 05:00:00 GMT</pubDate>
-      <description>Syntax is a Trap</description>
-    </item>
-    <item>
-      <title>What are Quines?</title>
-      <link>https://ramonasuncion.com/posts/what-are-quines/</link>
-      <guid>https://ramonasuncion.com/posts/what-are-quines/</guid>
-      <pubDate>Mon, 26 Jan 2026 05:00:00 GMT</pubDate>
-      <description>What are Quines?</description>
-    </item>
-    <item>
-      <title>Don&apos;t Build Your Own Bootloader</title>
-      <link>https://ramonasuncion.com/posts/not-building-bootloader/</link>
-      <guid>https://ramonasuncion.com/posts/not-building-bootloader/</guid>
-      <pubDate>Mon, 01 Dec 2025 05:00:00 GMT</pubDate>
-      <description>Why building your own bootloader is usually not worth the trade-offs.</description>
-    </item>
-  </channel>
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Ramon Asuncion</title>
+        <link>https://ramonasuncion.com</link>
+        <description>Ramon Asuncion's blog</description>
+        <lastBuildDate>Fri, 20 Feb 2026 22:42:11 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Making the Switch to Emacs]]></title>
+            <link>https://ramonasuncion.com/posts/making-the-switch-to-emacs/</link>
+            <guid isPermaLink="false">https://ramonasuncion.com/posts/making-the-switch-to-emacs/</guid>
+            <pubDate>Mon, 16 Feb 2026 05:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Syntax is a Trap]]></title>
+            <link>https://ramonasuncion.com/posts/syntax-is-a-trap/</link>
+            <guid isPermaLink="false">https://ramonasuncion.com/posts/syntax-is-a-trap/</guid>
+            <pubDate>Fri, 13 Feb 2026 05:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[What are Quines?]]></title>
+            <link>https://ramonasuncion.com/posts/what-are-quines/</link>
+            <guid isPermaLink="false">https://ramonasuncion.com/posts/what-are-quines/</guid>
+            <pubDate>Mon, 26 Jan 2026 05:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Don't Build Your Own Bootloader]]></title>
+            <link>https://ramonasuncion.com/posts/not-building-bootloader/</link>
+            <guid isPermaLink="false">https://ramonasuncion.com/posts/not-building-bootloader/</guid>
+            <pubDate>Mon, 01 Dec 2025 05:00:00 GMT</pubDate>
+        </item>
+    </channel>
 </rss>

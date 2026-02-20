@@ -1,21 +1,32 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Syntax is a Trap</title>
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-		<link rel="stylesheet" href="../../assets/styles.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
-     <link
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syntax is a Trap</title>
+    <meta property="og:title" content="Syntax is a Trap" />
+    <meta property="og:image" content="https://ramonasuncion.com/posts/syntax-is-a-trap/og.png" />
+    <meta property="og:url" content="https://ramonasuncion.com/posts/syntax-is-a-trap/" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-	</head>
-	<body>
+  </head>
+  <body>
     <header>
       <h1><a href="/">Ramon Asuncion</a></h1>
       <nav>
@@ -24,12 +35,11 @@
         <a href="/blogroll/">Blogroll</a>
       </nav>
     </header>
-		<main>
-			<article class="post">
-            <h2>Syntax is a Trap</h2>
-            <time>Feb 13, 2026</time>
-				<div class="post-content">
-					<p>I’ve been designing a new system language called <a href="https://github.com/ripe-lang">Ripe</a>, and I’ve fallen into a trap of trying to invent a ‘unique’ syntax for my language before I’ve written a line of code. I’m writing this so you don’t waste as much time as I did. 🥲</p>
+    <main>
+      <article class="post">
+        <h2>Syntax is a Trap</h2>
+        <time>Feb 13, 2026</time>
+        <div class="post-content"><p>I’ve been designing a new system language called <a href="https://github.com/ripe-lang">Ripe</a>, and I’ve fallen into a trap of trying to invent a ‘unique’ syntax for my language before I’ve written a line of code. I’m writing this so you don’t waste as much time as I did. 🥲</p>
 <p>Syntax uniqueness doesn’t exist and doesn&#39;t matter. Every language shares some commonality with others: braces for blocks, parentheses for calls, and colons or keywords for types. This is done on purpose. If someone picks up your language, the last thing they want to find out is that you&#39;ve replaced curly braces for blocks with square brackets just to be different. Sorry, esolangs.</p>
 <p>The truth is, there are only so many readable ways to write: <code>variable [something] type [something] value</code></p>
 <p>You can do:</p>
@@ -58,34 +68,32 @@
 </ul>
 <p>As the weeks go on, I’ll add expressions, control flow, and loops. From there, I can start figuring out what I really want this language to be: string handling, memory management, pointers, structs, and generics.</p>
 <p>But for now, just getting integers working is my main focus. One last thing: early on, <strong>transpile to C</strong>. It saves you from getting stuck in LLVM boilerplate before you’ve even gotten a basic &#39;Hello World&#39; to run. Godspeed. 😎</p>
-
-				</div>
-			</article>
-		</main>
-      <footer>
-        <p class="footer-social-links">
-          <a
-            href="https://github.com/ramonasuncion"
-            target="_blank"
-            rel="noopener"
-            title="GitHub"
-          >
-            <i class="fab fa-github" aria-hidden="true"></i>
-            GitHub
-          </a>
-          <a href="mailto:asuncionbatista@gmail.com" title="Email">
-            <i class="fas fa-envelope" aria-hidden="true"></i>
-            Email
-          </a>
-          <a href="/feed.xml" title="Subscribe (RSS)">
-            <i class="fas fa-rss" aria-hidden="true"></i>
-            Subscribe (RSS)
-          </a>
-        </p>
-      </footer>
-    <!-- highlight.js is applied at build time -->
+</div>
+      </article>
+    </main>
+    <footer>
+      <p class="footer-social-links">
+        <a
+          href="https://github.com/ramonasuncion"
+          target="_blank"
+          rel="noopener"
+          title="GitHub"
+        >
+          <i class="fab fa-github" aria-hidden="true"></i>
+          GitHub
+        </a>
+        <a href="mailto:asuncionbatista@gmail.com" title="Email">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          Email
+        </a>
+        <a href="/feed.xml" title="Subscribe (RSS)">
+          <i class="fas fa-rss" aria-hidden="true"></i>
+          Subscribe (RSS)
+        </a>
+      </p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
-	</body>
+  </body>
 </html>

@@ -3,14 +3,12 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import hljs from "highlight.js";
+import sharp from "sharp";
+import { Feed } from "feed";
 
 hljs.configure({ classPrefix: "hl-" });
 
-function escapeHtml(s) {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-function escapeXml(s) {
+function escape(s) {
   return s
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -22,6 +20,15 @@ function escapeXml(s) {
 const SITE_URL = "https://ramonasuncion.com";
 const SITE_TITLE = "Ramon Asuncion";
 const SITE_DESCRIPTION = "Ramon Asuncion's blog";
+const POSTS_DIR = path.join(process.cwd(), "posts");
+const TEMPLATE = fs.readFileSync(
+  path.join(process.cwd(), "template.html"),
+  "utf8",
+);
+const OG_TEMPLATE = fs.readFileSync(
+  path.join(process.cwd(), "og-template.svg"),
+  "utf8",
+);
 
 function parse_highlight_spec(spec) {
   if (!spec) return [];
@@ -36,63 +43,26 @@ function parse_highlight_spec(spec) {
   });
 }
 
-function parse_callouts(source) {
-  const res = new Map();
-  let line = 0;
-  const s = String(source);
-  const without_callouts = s.replace(/<(\d)>|\n/g, (m, d) => {
-    if (m === "\n") {
-      line += 1;
-      return m;
-    }
-    const arr = res.get(line) ?? [];
-    arr.push(d);
-    res.set(line, arr);
-    return "";
-  });
-  return [without_callouts, res];
-}
-
-function add_spans_console(source) {
+function highlightConsole(source) {
   let cont = false;
-  const lines = source
+  return source
     .trimEnd()
     .split("\n")
     .map((line) => {
       if (cont) {
         cont = line.endsWith("\\");
-        return `${escapeHtml(line)}\n`;
+        return `${escape(line)}\n`;
       }
       if (line.startsWith("$ ")) {
         cont = line.endsWith("\\");
-        return `<span class="hl-title function_">$</span> ${escapeHtml(
-          line.substring(2),
-        )}\n`;
+        return `<span class="hl-title function_">$</span> ${escape(line.substring(2))}\n`;
       }
       if (line.startsWith("#")) {
-        return `<span class="hl-comment">${escapeHtml(line)}</span>\n`;
+        return `<span class="hl-comment">${escape(line)}</span>\n`;
       }
-      return `<span class="hl-output">${escapeHtml(line)}</span>\n`;
-    });
-  return lines.join("");
-}
-
-function add_spans(source, language) {
-  if (!language || language === "adoc") return escapeHtml(source);
-  if (language === "console") return add_spans_console(source);
-  try {
-    if (language && hljs.getLanguage && !hljs.getLanguage(language)) {
-      // fallback to auto-detection
-      const auto = hljs.highlightAuto(source);
-      return auto.value;
-    }
-    const res = hljs.highlight(source, { language, ignoreIllegals: true });
-    return res.value;
-  } catch (e) {
-    console.error(e);
-    console.error(`\n    hljs failed for language=${language}\n`);
-    return escapeHtml(source);
-  }
+      return `<span class="hl-output">${escape(line)}</span>\n`;
+    })
+    .join("");
 }
 
 function parseDateLocal(date) {
@@ -104,17 +74,25 @@ function parseDateLocal(date) {
   }
   return new Date(date);
 }
+
+function highlight(source, lang) {
+  if (lang === "adoc") return escape(source);
+  if (lang === "console") return highlightConsole(source);
+  try {
+    if (!lang || !hljs.getLanguage(lang))
+      return hljs.highlightAuto(source).value;
+    return hljs.highlight(source, { language: lang, ignoreIllegals: true })
+      .value;
+  } catch {
+    return escape(source);
+  }
+}
+
 function highlight_code(source, infostring) {
-  // `source` MUST BE a string
-  source = String(source);
   const parts = (infostring || "").trim().split(/\s+/);
   const language = parts[0];
   const spec = parse_highlight_spec(parts[1]);
-  let src = source;
-  let callouts;
-  [src, callouts] = parse_callouts(src);
-  let highlighted = add_spans(src, language);
-  highlighted = String(highlighted).trimEnd();
+  let highlighted = String(highlight(String(source), language)).trimEnd();
 
   // balance open spans across line breaks
   const openTags = [];
@@ -139,10 +117,7 @@ function highlight_code(source, infostring) {
     .split("\n")
     .map((it, idx) => {
       const cls = spec.includes(idx + 1) ? " hl-line" : "";
-      const calls = (callouts.get(idx) ?? [])
-        .map((it) => `<i class="callout" data-value="${it}"></i>`)
-        .join(" ");
-      return `<span class="line${cls}">${it}${calls}</span>`;
+      return `<span class="line${cls}">${it}</span>`;
     })
     .join("\n");
 
@@ -150,53 +125,69 @@ function highlight_code(source, infostring) {
 }
 
 const renderer = new marked.Renderer();
-renderer.code = function (code, infostring, escaped) {
+renderer.code = function (code) {
   if (code && typeof code === "object") {
-    const lang = code.lang || "";
-    const meta = code.meta || "";
-    const info = (lang + (meta ? ` ${meta}` : "")).trim();
+    const info = [code.lang || "", code.meta || ""].join(" ").trim();
     return highlight_code(code.text ?? String(code), info);
   }
-  return highlight_code(code, infostring);
+  return highlight_code(code, "");
 };
 marked.use({ renderer });
 
-const POSTS_DIR = path.join(process.cwd(), "posts");
-
-function readMarkdownFiles(dir) {
-  return fs.readdirSync(dir).filter((f) => f.endsWith(".md"));
-}
-
 function generateRssFeed(posts) {
-  const items = posts
-    .map((p) => {
-      const pubDate = p.date
-        ? parseDateLocal(p.date).toUTCString()
-        : new Date().toUTCString();
-      return `    <item>
-      <title>${escapeXml(p.title)}</title>
-      <link>${SITE_URL}/${p.url}</link>
-      <guid>${SITE_URL}/${p.url}</guid>
-      <pubDate>${pubDate}</pubDate>
-      <description>${escapeXml(p.excerpt || p.title)}</description>
-    </item>`;
-    })
-    .join("\n");
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>${escapeXml(SITE_TITLE)}</title>
-    <link>${SITE_URL}</link>
-    <description>${escapeXml(SITE_DESCRIPTION)}</description>
-    <language>en-us</language>
-    <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
-${items}
-  </channel>
-</rss>`;
+  const feed = new Feed({
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    id: SITE_URL,
+    link: SITE_URL,
+    language: "en",
+    feedLinks: { rss2: `${SITE_URL}/feed.xml` },
+  });
+  for (const p of posts) {
+    feed.addItem({
+      title: p.title,
+      id: `${SITE_URL}/${p.url}`,
+      link: `${SITE_URL}/${p.url}`,
+      date: parseDateLocal(p.date) || new Date(),
+    });
+  }
+  return feed.rss2();
 }
 
-function renderPostToHtml(meta, htmlContent) {
+function wrapText(text, maxChars) {
+  const words = text.split(" ");
+  const lines = [];
+  let current = "";
+  for (const word of words) {
+    if (current && (current + " " + word).length > maxChars) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = current ? current + " " + word : word;
+    }
+  }
+  if (current) lines.push(current);
+  return lines;
+}
+
+async function generateOgImage(title, outPath) {
+  const lines = wrapText(title, 20);
+  const fontSize = 72;
+  const lineHeight = fontSize * 1.2;
+  const startY = 200;
+
+  const titleLines = lines
+    .map(
+      (line, i) =>
+        `<text x="100" y="${startY + i * lineHeight}" font-family="Georgia, serif" font-size="${fontSize}" font-weight="700" fill="#7b1b1b">${escape(line)}</text>`,
+    )
+    .join("\n  ");
+
+  const svg = OG_TEMPLATE.replace("{{title_lines}}", titleLines);
+  await sharp(Buffer.from(svg)).png().toFile(outPath);
+}
+
+function renderPostToHtml(meta, htmlContent, slug) {
   const title = meta.title || "Untitled";
   const date = meta.date || "";
   const formattedDate = date
@@ -206,97 +197,44 @@ function renderPostToHtml(meta, htmlContent) {
         day: "numeric",
       })
     : "";
-  const out = `<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>${title}</title>
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-		<link rel="stylesheet" href="../../assets/styles.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
-     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-	</head>
-	<body>
-    <header>
-      <h1><a href="/">Ramon Asuncion</a></h1>
-      <nav>
-        <a href="/about/">About</a>
-        <a href="/links/">Links</a>
-        <a href="/blogroll/">Blogroll</a>
-      </nav>
-    </header>
-		<main>
-			<article class="post">
-            <h2>${title}</h2>
-            <time>${formattedDate}</time>
-				<div class="post-content">
-					${htmlContent}
-				</div>
-			</article>
-		</main>
-      <footer>
-        <p class="footer-social-links">
-          <a
-            href="https://github.com/ramonasuncion"
-            target="_blank"
-            rel="noopener"
-            title="GitHub"
-          >
-            <i class="fab fa-github" aria-hidden="true"></i>
-            GitHub
-          </a>
-          <a href="mailto:asuncionbatista@gmail.com" title="Email">
-            <i class="fas fa-envelope" aria-hidden="true"></i>
-            Email
-          </a>
-          <a href="/feed.xml" title="Subscribe (RSS)">
-            <i class="fas fa-rss" aria-hidden="true"></i>
-            Subscribe (RSS)
-          </a>
-        </p>
-      </footer>
-    <!-- highlight.js is applied at build time -->
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
-    <script src="../../assets/js/scripts.js"></script>
-	</body>
-</html>`;
-  return out;
+  return TEMPLATE.replace(/\{\{title\}\}/g, escape(title))
+    .replace("{{date}}", formattedDate)
+    .replace("{{content}}", htmlContent)
+    .replace("{{og_image}}", `${SITE_URL}/posts/${slug}/og.png`)
+    .replace("{{og_url}}", `${SITE_URL}/posts/${slug}/`);
 }
 
-function build() {
+async function build() {
   if (!fs.existsSync(POSTS_DIR)) {
     console.error("posts directory not found");
     process.exit(1);
   }
 
-  const files = readMarkdownFiles(POSTS_DIR);
+  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md"));
   const posts = [];
 
   for (const file of files) {
-    const src = path.join(POSTS_DIR, file);
-    const raw = fs.readFileSync(src, "utf8");
+    const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
     const { data, content } = matter(raw);
-    const slug = data.slug || file.replace(/\.md$/, "");
+    const date = file.match(/^(\d{4}-\d{2}-\d{2})/)?.[1] || "";
+    const slug =
+      data.slug ||
+      file.replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.md$/, "");
     const html = marked(content);
     const outDir = path.join(POSTS_DIR, slug);
     fs.mkdirSync(outDir, { recursive: true });
-    const outPath = path.join(outDir, "index.html");
-    fs.writeFileSync(outPath, renderPostToHtml(data, html), "utf8");
+    fs.writeFileSync(
+      path.join(outDir, "index.html"),
+      renderPostToHtml({ ...data, date }, html, slug),
+      "utf8",
+    );
+    await generateOgImage(data.title || slug, path.join(outDir, "og.png"));
 
     posts.push({
       title: data.title || slug,
-      date: data.date || "",
+      date,
       slug,
       url: `posts/${slug}/`,
-      excerpt: data.excerpt || "",
     });
   }
 

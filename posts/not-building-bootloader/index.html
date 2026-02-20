@@ -1,21 +1,32 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Don't Build Your Own Bootloader</title>
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-		<link rel="stylesheet" href="../../assets/styles.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
-     <link
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Don&apos;t Build Your Own Bootloader</title>
+    <meta property="og:title" content="Don&apos;t Build Your Own Bootloader" />
+    <meta property="og:image" content="https://ramonasuncion.com/posts/not-building-bootloader/og.png" />
+    <meta property="og:url" content="https://ramonasuncion.com/posts/not-building-bootloader/" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-	</head>
-	<body>
+  </head>
+  <body>
     <header>
       <h1><a href="/">Ramon Asuncion</a></h1>
       <nav>
@@ -24,12 +35,11 @@
         <a href="/blogroll/">Blogroll</a>
       </nav>
     </header>
-		<main>
-			<article class="post">
-            <h2>Don't Build Your Own Bootloader</h2>
-            <time>Dec 1, 2025</time>
-				<div class="post-content">
-					<p>My experience building a small bootloader.</p>
+    <main>
+      <article class="post">
+        <h2>Don&apos;t Build Your Own Bootloader</h2>
+        <time>Dec 1, 2025</time>
+        <div class="post-content"><p>My experience building a small bootloader.</p>
 <h2>Journey</h2>
 <p>I have been building my x64 playground OS, <a href="https://github.com/ramonasuncion/ignisOS">ignisOS</a>, on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.</p>
 <p>I started by reading the OSDev wiki on <a href="https://wiki.osdev.org/Rolling_Your_Own_Bootloader">rolling your own bootloader</a>, and it was quite a ride. I spent weeks trying to figure out why my string literals weren&#39;t working, only to discover I was just ONE sector off from reading the kernel even though everything else loaded correctly.</p>
@@ -47,34 +57,32 @@
 <span class="line">}</span></code></pre></figure><h2>Recommendation</h2>
 <p><strong>Pro tip: skip the bootloader and focus on the kernel!</strong></p>
 <p>Use an existing bootloader like GRUB, Limine, or another option and move quickly. A boot loader is not part of the OS. It&#39;s simply a tool to get the system into a state where the kernel can run, and it can be a major distraction. Only create a custom bootloader if you truly need capabilities that existing solutions don&#39;t provide.</p>
-
-				</div>
-			</article>
-		</main>
-      <footer>
-        <p class="footer-social-links">
-          <a
-            href="https://github.com/ramonasuncion"
-            target="_blank"
-            rel="noopener"
-            title="GitHub"
-          >
-            <i class="fab fa-github" aria-hidden="true"></i>
-            GitHub
-          </a>
-          <a href="mailto:asuncionbatista@gmail.com" title="Email">
-            <i class="fas fa-envelope" aria-hidden="true"></i>
-            Email
-          </a>
-          <a href="/feed.xml" title="Subscribe (RSS)">
-            <i class="fas fa-rss" aria-hidden="true"></i>
-            Subscribe (RSS)
-          </a>
-        </p>
-      </footer>
-    <!-- highlight.js is applied at build time -->
+</div>
+      </article>
+    </main>
+    <footer>
+      <p class="footer-social-links">
+        <a
+          href="https://github.com/ramonasuncion"
+          target="_blank"
+          rel="noopener"
+          title="GitHub"
+        >
+          <i class="fab fa-github" aria-hidden="true"></i>
+          GitHub
+        </a>
+        <a href="mailto:asuncionbatista@gmail.com" title="Email">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          Email
+        </a>
+        <a href="/feed.xml" title="Subscribe (RSS)">
+          <i class="fas fa-rss" aria-hidden="true"></i>
+          Subscribe (RSS)
+        </a>
+      </p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
     <script src="../../assets/js/scripts.js"></script>
-	</body>
+  </body>
 </html>

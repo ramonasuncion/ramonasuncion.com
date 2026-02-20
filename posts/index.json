@@ -3,28 +3,24 @@
     "title": "Making the Switch to Emacs",
     "date": "2026-02-16",
     "slug": "making-the-switch-to-emacs",
-    "url": "posts/making-the-switch-to-emacs/",
-    "excerpt": ""
+    "url": "posts/making-the-switch-to-emacs/"
   },
   {
     "title": "Syntax is a Trap",
     "date": "2026-02-13",
     "slug": "syntax-is-a-trap",
-    "url": "posts/syntax-is-a-trap/",
-    "excerpt": ""
+    "url": "posts/syntax-is-a-trap/"
   },
   {
     "title": "What are Quines?",
     "date": "2026-01-26",
     "slug": "what-are-quines",
-    "url": "posts/what-are-quines/",
-    "excerpt": ""
+    "url": "posts/what-are-quines/"
   },
   {
     "title": "Don't Build Your Own Bootloader",
     "date": "2025-12-01",
     "slug": "not-building-bootloader",
-    "url": "posts/not-building-bootloader/",
-    "excerpt": "Why building your own bootloader is usually not worth the trade-offs."
+    "url": "posts/not-building-bootloader/"
   }
 ]

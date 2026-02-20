@@ -1,6 +1,5 @@
 ---
 title: "Syntax is a Trap"
-date: "2026-02-13"
 slug: syntax-is-a-trap
 ---
 

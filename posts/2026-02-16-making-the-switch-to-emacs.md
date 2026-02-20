@@ -1,6 +1,5 @@
 ---
 title: "Making the Switch to Emacs"
-date: "2026-02-16"
 slug: making-the-switch-to-emacs
 ---
 

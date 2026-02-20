@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:image" content="{{og_image}}" />
+    <meta property="og:url" content="{{og_url}}" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Ramon Asuncion</a></h1>
+      <nav>
+        <a href="/about/">About</a>
+        <a href="/links/">Links</a>
+        <a href="/blogroll/">Blogroll</a>
+      </nav>
+    </header>
+    <main>
+      <article class="post">
+        <h2>{{title}}</h2>
+        <time>{{date}}</time>
+        <div class="post-content">{{content}}</div>
+      </article>
+    </main>
+    <footer>
+      <p class="footer-social-links">
+        <a
+          href="https://github.com/ramonasuncion"
+          target="_blank"
+          rel="noopener"
+          title="GitHub"
+        >
+          <i class="fab fa-github" aria-hidden="true"></i>
+          GitHub
+        </a>
+        <a href="mailto:asuncionbatista@gmail.com" title="Email">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          Email
+        </a>
+        <a href="/feed.xml" title="Subscribe (RSS)">
+          <i class="fas fa-rss" aria-hidden="true"></i>
+          Subscribe (RSS)
+        </a>
+      </p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="../../assets/js/scripts.js"></script>
+  </body>
+</html>

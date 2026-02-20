@@ -8,7 +8,6 @@
   --bg: #ffffff;
   --muted: #666;
   --max-width: 720px;
-  --code-font-size: 15px;
   --code-font-size: 18px;
   --code-line-height: 1.45;
 }
@@ -202,7 +201,6 @@ video {
   height: auto;
 }
 
-
 figure > video {
   display: block;
   margin-left: auto;
@@ -313,6 +311,16 @@ figure.code-block > pre > code > .line:before {
 
 .line {
   display: block;
+}
+
+.hl-line {
+  background-color: #ffc;
+}
+
+blockquote {
+  padding-left: 1em;
+  border-left: 3px solid var(--accent);
+  margin-left: 0;
 }
 
 .has-line-numbers pre {
