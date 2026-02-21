@@ -4,7 +4,7 @@
 
 /* Root variables */
 :root {
-  --accent: #7b1b1b;
+  --accent: rgb(255, 166, 43);
   --bg: #ffffff;
   --muted: #666;
   --max-width: 720px;

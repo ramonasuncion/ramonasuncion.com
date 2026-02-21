@@ -1,6 +1,6 @@
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="white"/>
-  <rect x="0" y="0" width="8" height="630" fill="#7b1b1b"/>
+  <rect x="0" y="0" width="8" height="630" fill="#ffa62b"/>
   {{title_lines}}
   <text x="100" y="580" font-family="Georgia, serif" font-size="22" fill="#999">ramonasuncion.com</text>
 </svg>
