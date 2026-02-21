@@ -179,7 +179,7 @@ async function generateOgImage(title, outPath) {
   const titleLines = lines
     .map(
       (line, i) =>
-        `<text x="100" y="${startY + i * lineHeight}" font-family="Georgia, serif" font-size="${fontSize}" font-weight="700" fill="#c47d0e">${escape(line)}</text>`,
+        `<text x="100" y="${startY + i * lineHeight}" font-family="Georgia, serif" font-size="${fontSize}" font-weight="700" fill="#c0392b">${escape(line)}</text>`,
     )
     .join("\n  ");
 

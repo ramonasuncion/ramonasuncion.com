@@ -4,7 +4,7 @@
 
 /* Root variables */
 :root {
-  --accent: #c47d0e;
+  --accent: #c0392b;
   --bg: #ffffff;
   --muted: #666;
   --max-width: 720px;
@@ -189,7 +189,7 @@ footer {
 .footer-social-links a:focus,
 .footer-social-links a:hover i,
 .footer-social-links a:focus i {
-  color: #b32d2d;
+  color: #c0392b;
 }
 
 /* Images and videos */
