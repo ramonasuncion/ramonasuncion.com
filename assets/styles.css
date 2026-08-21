@@ -68,6 +68,90 @@ main {
   font-size: 1.15rem;
 }
 
+.portfolio {
+  margin-top: 2rem;
+}
+
+.portfolio-intro {
+  margin-bottom: 3rem;
+}
+
+.portfolio-project h2 {
+  margin: 3.5rem 0 0.75rem;
+  color: var(--accent);
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+
+.portfolio-project h2 a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.portfolio-project p {
+  line-height: 1.8;
+}
+
+.project-image {
+  margin: 1.5rem 0 4rem;
+}
+
+.project-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-image-ripe {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.other-projects {
+  margin: 3rem 0;
+}
+
+.other-projects h2 {
+  margin-bottom: 0.8rem;
+  color: var(--accent);
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+
+.other-projects h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
+}
+
+.other-project-group + .other-project-group {
+  margin-top: 1.75rem;
+}
+
+.other-projects ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.other-projects li {
+  line-height: 1.3;
+}
+
+.other-projects li a {
+  display: block;
+  font-weight: 600;
+}
+
+.other-projects li span {
+  display: block;
+  color: #333;
+  font-size: 0.85rem;
+}
+
 .post {
   margin-bottom: 2rem;
 }
@@ -159,6 +243,35 @@ a:not(.footer-social-links a):focus {
 /* Footer */
 footer {
   padding-bottom: 1rem;
+}
+
+@media (max-width: 620px) {
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+
+  nav a {
+    margin: 0;
+  }
+
+  .portfolio {
+    margin-top: 2rem;
+  }
+
+  .portfolio-intro {
+    margin-bottom: 2.5rem;
+  }
+
+  .other-projects ul {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Footer social links */

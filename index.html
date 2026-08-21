@@ -4,6 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ramonasuncion</title>
+    <meta
+      name="description"
+      content="Ramon Asuncion is a software engineer working on compilers, programming languages, and systems software."
+    />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="assets/styles.css" />
     <link
@@ -19,12 +23,163 @@
       <h1><a href="./">Ramon Asuncion</a></h1>
       <nav>
         <a href="about/">About</a>
+        <a href="blog/">Blog</a>
         <a href="links/">Links</a>
         <a href="blogroll/">Blogroll</a>
       </nav>
     </header>
-    <main>
-      <section id="posts"></section>
+    <main class="portfolio">
+      <section class="portfolio-intro">
+        <p>
+          My main interests are systems programming and compilers. I build
+          programming languages and developer tools under
+          <a href="https://subrange.github.io/">Subrange</a>. I also build AI
+          projects with friends through
+          <a href="https://intelligentsandbox.github.io/"
+            >Intelligent Sandbox</a
+          >.
+        </p>
+      </section>
+
+      <article class="portfolio-project">
+        <h2><a href="https://github.com/ripe-lang/ripe">Ripe</a></h2>
+        <p>
+          Ripe is a systems programming language written in OCaml. I started it
+          as a language for mangoOS and recently widened its scope to other low
+          level software.
+        </p>
+        <p>
+          The compiler supports enums, structs, modules, and pattern matching.
+          My goal is fast compilation and direct control without making
+          ordinary programs tedious to write.
+        </p>
+        <figure class="project-image project-image-ripe">
+          <a href="assets/portfolio/ripe-source.png">
+            <img
+              src="assets/portfolio/ripe-source.png"
+              width="771"
+              height="690"
+              alt="Ripe source code with syntax highlighting"
+            />
+          </a>
+        </figure>
+      </article>
+
+      <article class="portfolio-project">
+        <h2><a href="https://github.com/subrange/nag">nag</a></h2>
+        <p>
+          nag is an offline issue tracker built around a postfix stack
+          language. Issues live inside the repository and commands compose into
+          small queries and updates.
+        </p>
+        <p>
+          It keeps project work beside the code. It supports priorities, tags,
+          dependencies, and notes without requiring a hosted service.
+        </p>
+        <figure class="project-image">
+          <a href="assets/portfolio/nag-terminal.png">
+            <img
+              src="assets/portfolio/nag-terminal.png"
+              width="790"
+              height="409"
+              alt="Terminal session creating and listing an issue with nag"
+              loading="lazy"
+            />
+          </a>
+        </figure>
+      </article>
+
+      <article class="portfolio-project">
+        <h2><a href="https://github.com/ramonlabs/echo">Echo</a></h2>
+        <p>
+          Echo is a Live2D AI VTuber built as a group of small services. Speech
+          recognition, language generation, memory, voice synthesis, and avatar
+          rendering can run independently.
+        </p>
+        <p>
+          The avatar reacts to conversation state with expressions, color
+          changes, and lip sync. I use a separate panel to control the services
+          and monitor performance.
+        </p>
+        <figure class="project-image">
+          <a href="assets/portfolio/echo-avatar.png">
+            <img
+              src="assets/portfolio/echo-avatar.png"
+              width="1000"
+              height="585"
+              alt="Echo robot avatar"
+              loading="lazy"
+            />
+          </a>
+        </figure>
+      </article>
+
+      <section class="other-projects" aria-labelledby="other-projects-title">
+        <h2 id="other-projects-title">Other Projects</h2>
+        <div class="other-project-group">
+          <h3>Programming Languages</h3>
+          <ul>
+            <li>
+              <a href="https://github.com/subrange/ceramic">Ceramic</a>
+              <span>A programming language written in C++.</span>
+            </li>
+            <li>
+              <a href="https://github.com/subrange/aurum">Aurum</a>
+              <span>A programming language written in C.</span>
+            </li>
+            <li>
+              <a href="https://github.com/subrange/pasgo">pasgo</a>
+              <span>A Pascal interpreter written in Go.</span>
+            </li>
+            <li>
+              <a href="https://github.com/subrange/expression">Expression</a>
+              <span>An esolang interpreter written in OCaml.</span>
+            </li>
+            <li>
+              <a href="https://github.com/subrange/fn">Fn</a>
+              <span>An esolang interpreter written in Python.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="other-project-group">
+          <h3>Systems and Tools</h3>
+          <ul>
+            <li>
+              <a href="https://github.com/ramonasuncion/plftool">plftool</a>
+              <span>Custom firmware research for a Parrot minidrone.</span>
+            </li>
+            <li>
+              <a href="https://github.com/ramonasuncion/mangoOS">mangoOS</a>
+              <span>An x64 monolithic operating system.</span>
+            </li>
+            <li>
+              <a href="https://github.com/ramonasuncion/fulmen">fulmen</a>
+              <span>A small container runtime for Linux.</span>
+            </li>
+            <li>
+              <a href="https://github.com/subrange/x86-nasm-lint"
+                >x86 nasm lint</a
+              >
+              <span>A linter for x86 NASM assembly.</span>
+            </li>
+            <li>
+              <a href="https://github.com/ramonasuncion/riscv-emulator"
+                >riscv emulator</a
+              >
+              <span>A RISC V emulator written in Python.</span>
+            </li>
+            <li>
+              <a href="https://github.com/ramonasuncion/lumina.h">lumina.h</a>
+              <span>A small image processing library written in C.</span>
+            </li>
+            <li>
+              <a href="https://github.com/ramonasuncion/cryptus">cryptus</a>
+              <span>A command line file encryption tool written in Rust.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
     <footer>
       <p class="footer-social-links">
@@ -47,6 +202,5 @@
         </a>
       </p>
     </footer>
-    <script src="./assets/js/scripts.js" defer></script>
   </body>
 </html>
