@@ -1,6 +1,5 @@
 ---
 title: "Making the Switch to Emacs"
-description: "Moving from Neovim to Emacs, and the keybinds I use."
 slug: making-the-switch-to-emacs
 ---
 

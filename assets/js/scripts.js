@@ -29,53 +29,101 @@ function renderPosts(posts) {
   const container = document.getElementById("posts");
   if (!container) return;
   container.innerHTML = "";
-  let list = null;
-  let year = null;
   posts.forEach((p) => {
-    const d = parseDateLocal(p.date || "");
-    const y = d ? d.getFullYear() : null;
-    if (!list || y !== year) {
-      const h = document.createElement("h2");
-      h.className = "label";
-      h.textContent = y;
-      container.appendChild(h);
-      list = document.createElement("ul");
-      list.className = "list";
-      container.appendChild(list);
-      year = y;
-    }
+    const el = document.createElement("article");
+    el.className = "post-list-item";
 
-    const el = document.createElement("li");
-    const text = document.createElement("div");
-
+    const h = document.createElement("h3");
     const link = document.createElement("a");
     link.href = "/" + p.url;
     link.textContent = p.title;
-    text.appendChild(link);
-
-    if (p.description) {
-      const desc = document.createElement("p");
-      desc.textContent = p.description;
-      text.appendChild(desc);
-    }
+    h.appendChild(link);
 
     const time = document.createElement("time");
     time.dateTime = p.date || "";
+    const d = parseDateLocal(p.date || "");
     time.textContent = d
-      ? d.toLocaleDateString("en-US", {
+      ? d.toLocaleDateString(undefined, {
           year: "numeric",
-          month: "long",
+          month: "short",
           day: "numeric",
         })
       : "";
 
-    el.appendChild(text);
+    el.appendChild(h);
     el.appendChild(time);
-    list.appendChild(el);
+    container.appendChild(el);
   });
 }
 
-function renderMath() {
+function addLineNumbers() {
+  document.querySelectorAll("pre").forEach((pre) => {
+    if (pre.dataset.lined) return;
+    if (
+      pre.parentElement &&
+      pre.parentElement.classList.contains("code-block")
+    )
+      return;
+    if (pre.querySelector && pre.querySelector(".line")) return;
+
+    const codeEl = pre.querySelector("code") || pre;
+
+    codeEl.style.display = "block";
+    codeEl.style.whiteSpace = "pre";
+
+    const raw = codeEl.textContent || "";
+    let textLines = raw.split(/\r\n|\r|\n/);
+
+    if (
+      textLines.length > 1 &&
+      textLines[textLines.length - 1].trim() === ""
+    ) {
+      textLines.pop();
+    }
+
+    const figure = document.createElement("figure");
+    figure.className = "code-block";
+
+    let htmlLines = codeEl.innerHTML.split(/\r\n|\r|\n/);
+
+    if (htmlLines.length === 1 && textLines.length > 1) {
+      const esc = (s) =>
+        s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      htmlLines = textLines.map((ln) => (ln.trim() === "" ? "​" : esc(ln)));
+    } else {
+      for (let i = 0; i < textLines.length; i++) {
+        if (textLines[i].trim() === "") {
+          htmlLines[i] = '<span class="hljs-empty-line">\u200B</span>';
+        }
+      }
+      for (let i = htmlLines.length; i < textLines.length; i++) {
+        htmlLines.push('<span class="hljs-empty-line">\u200B</span>');
+      }
+    }
+
+    if (htmlLines.length > 0) {
+      const alreadyWrapped = /^\s*<span[^>]+class=["']?line/.test(
+        htmlLines[0],
+      );
+      if (!alreadyWrapped) {
+        htmlLines = htmlLines.map((ln) => `<span class="line">${ln}</span>`);
+      }
+    }
+    codeEl.innerHTML = htmlLines.join("\n");
+
+    pre.parentNode.insertBefore(figure, pre);
+    figure.appendChild(pre);
+
+    pre.dataset.lined = "1";
+    pre.classList.add("has-line-numbers");
+  });
+}
+
+function initCodeEnhancements() {
+  if (window.hljs && typeof hljs.highlightAll === "function") {
+    hljs.highlightAll();
+  }
+
   if (window.renderMathInElement) {
     renderMathInElement(document.body, {
       delimiters: [
@@ -84,9 +132,14 @@ function renderMath() {
       ],
     });
   }
+
+  addLineNumbers();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderMath();
+  initCodeEnhancements();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   fetchPosts();
 });

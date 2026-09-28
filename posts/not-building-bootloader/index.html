@@ -9,57 +9,77 @@
     <meta property="og:url" content="https://ramonasuncion.com/posts/not-building-bootloader/" />
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../assets/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
+    <header>
+      <h1><a href="/">Ramon Asuncion</a></h1>
+      <nav>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/links/">Links</a>
+        <a href="/blogroll/">Blogroll</a>
+      </nav>
+    </header>
     <main>
       <article class="post">
-        <h1>Don&apos;t Build Your Own Bootloader</h1>
-        <p class="subtitle">Why you should skip the bootloader and focus on the kernel.</p>
-        <time>December 1, 2025</time>
-        <div class="post-content"><h2 id="journey">Journey <a class="anchor" href="#journey" aria-label="Link to this section">&sect;</a></h2>
-<p>I have been building my x64 playground OS, <a href="https://github.com/ramonasuncion/mangoOS">mangoOS</a>, on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.</p>
+        <h2>Don&apos;t Build Your Own Bootloader</h2>
+        <time>Dec 1, 2025</time>
+        <div class="post-content"><p>My experience building a small bootloader.</p>
+<h2>Journey</h2>
+<p>I have been building my x64 playground OS, <a href="https://github.com/ramonasuncion/ignisOS">ignisOS</a>, on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.</p>
 <p>I started by reading the OSDev wiki on <a href="https://wiki.osdev.org/Rolling_Your_Own_Bootloader">rolling your own bootloader</a>, and it was quite a ride. I spent weeks trying to figure out why my string literals weren&#39;t working, only to discover I was just ONE sector off from reading the kernel even though everything else loaded correctly.</p>
 <figure class="code-block"><pre><code><span class="line"><span class="hl-comment">; Load 10 sectors (was 9) from disk</span></span>
 <span class="line"><span class="hl-keyword">mov</span> <span class="hl-built_in">cl</span>, <span class="hl-number">0x0A</span></span></code></pre></figure><p>Call this what this is—skill issue. 🫠</p>
-<h2 id="lessons-learned">Lessons Learned <a class="anchor" href="#lessons-learned" aria-label="Link to this section">&sect;</a></h2>
+<h2>Lessons Learned</h2>
 <p>Well, you&#39;ll encounter issues like these when working on an OS. But this bootloader is far from being complete. What about file system support? Support for ELF? 🤔 You can spend all your time just working on the bootloader. That&#39;s where it hit me: is this where all my effort should go?</p>
-<p>In the end, I did get a somewhat working bootloader (ignisOS-bootloader), but on the kernel side I only have a basic &quot;Hello World.&quot;</p>
+<p>In the end, I did get a somewhat working bootloader (<a href="https://github.com/ramonasuncion/ignisOS-bootloader">ignisOS-bootloader</a>), but on the kernel side I only have a basic &quot;Hello World.&quot;</p>
 <figure class="code-block"><pre><code><span class="line"><span class="hl-meta">#<span class="hl-keyword">include</span> <span class="hl-string">&quot;drivers/vga.h&quot;</span></span></span>
 <span class="line"></span>
 <span class="line"><span class="hl-type">void</span> <span class="hl-title function_">kmain</span><span class="hl-params">()</span></span>
 <span class="line">{</span>
 <span class="line">    kprint(<span class="hl-string">&quot;Hello, world!&quot;</span>);</span>
 <span class="line">    <span class="hl-keyword">for</span> (;;) <span class="hl-keyword">asm</span> <span class="hl-title function_">volatile</span><span class="hl-params">(<span class="hl-string">&quot;hlt&quot;</span>)</span>;</span>
-<span class="line">}</span></code></pre></figure><h2 id="recommendation">Recommendation <a class="anchor" href="#recommendation" aria-label="Link to this section">&sect;</a></h2>
+<span class="line">}</span></code></pre></figure><h2>Recommendation</h2>
 <p><strong>Pro tip: skip the bootloader and focus on the kernel!</strong></p>
 <p>Use an existing bootloader like GRUB, Limine, or another option and move quickly. A boot loader is not part of the OS. It&#39;s simply a tool to get the system into a state where the kernel can run, and it can be a major distraction. Only create a custom bootloader if you truly need capabilities that existing solutions don&#39;t provide.</p>
 </div>
-        <section class="read-next"><h2 class="label" id="read-next">Read Next <a class="anchor" href="#read-next" aria-label="Link to this section">&sect;</a></h2><ul class="list"><li><div><a href="/posts/making-the-switch-to-emacs/">Making the Switch to Emacs</a><p>Moving from Neovim to Emacs, and the keybinds I use.</p></div><time datetime="2026-02-16">February 16, 2026</time></li>
-<li><div><a href="/posts/syntax-is-a-trap/">Syntax is a Trap</a><p>Your language&apos;s semantics matter far more than its syntax.</p></div><time datetime="2026-02-13">February 13, 2026</time></li>
-<li><div><a href="/posts/what-are-quines/">What are Quines?</a><p>A program that prints its own source code, in two lines of Python.</p></div><time datetime="2026-01-26">January 26, 2026</time></li></ul></section>
       </article>
     </main>
     <footer>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/blog/">Blog</a>
-        <a href="/projects/">Projects</a>
-        <a href="/feed.xml">RSS</a>
-      </nav>
-      <p>&copy; 2025-2026 Ramon Asuncion Batista</p>
-      <p>
-        The source for this site is available under the
+      <p class="footer-social-links">
         <a
-          href="https://github.com/ramonasuncion/ramonasuncion.com/blob/main/LICENSE"
+          href="https://github.com/ramonasuncion"
           target="_blank"
           rel="noopener"
-          >ISC License</a
-        >. Views expressed here are my own.
+          title="GitHub"
+        >
+          <i class="fab fa-github" aria-hidden="true"></i>
+          GitHub
+        </a>
+        <a href="mailto:asuncionbatista@gmail.com" title="Email">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          Email
+        </a>
+        <a href="/feed.xml" title="Subscribe (RSS)">
+          <i class="fas fa-rss" aria-hidden="true"></i>
+          Subscribe (RSS)
+        </a>
       </p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
