@@ -9,40 +9,21 @@
     <meta property="og:url" content="https://ramonasuncion.com/posts/what-are-quines/" />
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../assets/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
   </head>
   <body>
-    <header>
-      <h1><a href="/">Ramon Asuncion</a></h1>
-      <nav>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-        <a href="/links/">Links</a>
-        <a href="/blogroll/">Blogroll</a>
-      </nav>
-    </header>
     <main>
       <article class="post">
-        <h2>What are Quines?</h2>
-        <time>Jan 26, 2026</time>
+        <h1>What are Quines?</h1>
+        <p class="subtitle">A program that prints its own source code, in two lines of Python.</p>
+        <time>January 26, 2026</time>
         <div class="post-content"><p>I was watching a video the other day by the creator Tsoding about <a href="https://www.youtube.com/watch?v=QGm-d5Ch5JM">Quines</a>. I highly recommend you watch the video.</p>
 <p>But to give you a quick summary, a <strong><a href="https://en.wikipedia.org/wiki/Quine_(computing)">quine</a></strong> is a program that outputs its own source code as its only output.</p>
-<h2>The Goal</h2>
+<h2 id="the-goal">The Goal <a class="anchor" href="#the-goal" aria-label="Link to this section">&sect;</a></h2>
 <p>The question is: How can a program output its own source without being told what that source is?</p>
 <p>You need to write a program that contains two things:</p>
 <ol>
@@ -50,12 +31,12 @@
 <li>Code that prints a string representation of itself</li>
 </ol>
 <p>You can find a bunch of quine programs <a href="https://cs.lmu.edu/~ray/notes/quineprograms/">here</a>, but I’ll be covering Python below.</p>
-<h2>Simple Quine in Python</h2>
+<h2 id="simple-quine-in-python">Simple Quine in Python <a class="anchor" href="#simple-quine-in-python" aria-label="Link to this section">&sect;</a></h2>
 <figure class="code-block"><pre><code><span class="line">s = <span class="hl-string">&#x27;s = %r\nprint(s %% s)&#x27;</span></span>
 <span class="line"><span class="hl-built_in">print</span>(s % s)</span></code></pre></figure><p>The output? The exact same thing!</p>
 <figure class="code-block"><pre><code><span class="line">s = <span class="hl-string">&#x27;s = %r\nprint(s %% s)&#x27;</span></span>
 <span class="line"><span class="hl-built_in">print</span>(s % s)</span></code></pre></figure><p>You should try it! Open up <code>ipython</code> and paste in the exact code. (side note, this gives a good idea for my website—users should be able to run code snippets)</p>
-<h2>How it’s Made</h2>
+<h2 id="how-its-made">How it’s Made <a class="anchor" href="#how-its-made" aria-label="Link to this section">&sect;</a></h2>
 <ol>
 <li>The string <code>s</code> contains a template with <code>%r</code> (repr format)</li>
 <li><code>print(s % s)</code> substitutes <code>s</code> into its own template</li>
@@ -63,27 +44,27 @@
 </ol>
 <p>If you want to learn more, I suggest reading the <a href="https://en.wikipedia.org/wiki/Quine_(computing)#Multiquines">Wikipedia article</a> on the different types of quines.</p>
 </div>
+        <section class="read-next"><h2 class="label" id="read-next">Read Next <a class="anchor" href="#read-next" aria-label="Link to this section">&sect;</a></h2><ul class="list"><li><div><a href="/posts/making-the-switch-to-emacs/">Making the Switch to Emacs</a><p>Moving from Neovim to Emacs, and the keybinds I use.</p></div><time datetime="2026-02-16">February 16, 2026</time></li>
+<li><div><a href="/posts/syntax-is-a-trap/">Syntax is a Trap</a><p>Your language&apos;s semantics matter far more than its syntax.</p></div><time datetime="2026-02-13">February 13, 2026</time></li>
+<li><div><a href="/posts/not-building-bootloader/">Don&apos;t Build Your Own Bootloader</a><p>Why you should skip the bootloader and focus on the kernel.</p></div><time datetime="2025-12-01">December 1, 2025</time></li></ul></section>
       </article>
     </main>
     <footer>
-      <p class="footer-social-links">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/projects/">Projects</a>
+        <a href="/feed.xml">RSS</a>
+      </nav>
+      <p>&copy; 2025-2026 Ramon Asuncion Batista</p>
+      <p>
+        The source for this site is available under the
         <a
-          href="https://github.com/ramonasuncion"
+          href="https://github.com/ramonasuncion/ramonasuncion.com/blob/main/LICENSE"
           target="_blank"
           rel="noopener"
-          title="GitHub"
-        >
-          <i class="fab fa-github" aria-hidden="true"></i>
-          GitHub
-        </a>
-        <a href="mailto:asuncionbatista@gmail.com" title="Email">
-          <i class="fas fa-envelope" aria-hidden="true"></i>
-          Email
-        </a>
-        <a href="/feed.xml" title="Subscribe (RSS)">
-          <i class="fas fa-rss" aria-hidden="true"></i>
-          Subscribe (RSS)
-        </a>
+          >ISC License</a
+        >. Views expressed here are my own.
       </p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>

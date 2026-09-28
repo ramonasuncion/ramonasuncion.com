@@ -1,5 +1,6 @@
 ---
 title: "Syntax is a Trap"
+description: "Your language's semantics matter far more than its syntax."
 slug: syntax-is-a-trap
 ---
 

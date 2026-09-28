@@ -9,59 +9,38 @@
     <meta property="og:url" content="{{og_url}}" />
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../assets/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
   </head>
   <body>
-    <header>
-      <h1><a href="/">Ramon Asuncion</a></h1>
-      <nav>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-        <a href="/links/">Links</a>
-        <a href="/blogroll/">Blogroll</a>
-      </nav>
-    </header>
     <main>
       <article class="post">
-        <h2>{{title}}</h2>
+        <h1>{{title}}</h1>
+        {{subtitle}}
         <time>{{date}}</time>
         <div class="post-content">{{content}}</div>
+        {{read_next}}
       </article>
     </main>
     <footer>
-      <p class="footer-social-links">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/projects/">Projects</a>
+        <a href="/feed.xml">RSS</a>
+      </nav>
+      <p>&copy; 2025-2026 Ramon Asuncion Batista</p>
+      <p>
+        The source for this site is available under the
         <a
-          href="https://github.com/ramonasuncion"
+          href="https://github.com/ramonasuncion/ramonasuncion.com/blob/main/LICENSE"
           target="_blank"
           rel="noopener"
-          title="GitHub"
-        >
-          <i class="fab fa-github" aria-hidden="true"></i>
-          GitHub
-        </a>
-        <a href="mailto:asuncionbatista@gmail.com" title="Email">
-          <i class="fas fa-envelope" aria-hidden="true"></i>
-          Email
-        </a>
-        <a href="/feed.xml" title="Subscribe (RSS)">
-          <i class="fas fa-rss" aria-hidden="true"></i>
-          Subscribe (RSS)
-        </a>
+          >ISC License</a
+        >. Views expressed here are my own.
       </p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>

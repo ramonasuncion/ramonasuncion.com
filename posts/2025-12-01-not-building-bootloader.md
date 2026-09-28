@@ -1,5 +1,6 @@
 ---
 title: "Don't Build Your Own Bootloader"
+description: "Why you should skip the bootloader and focus on the kernel."
 tags:
   - bootloader
   - systems
@@ -7,11 +8,9 @@ tags:
 slug: not-building-bootloader
 ---
 
-My experience building a small bootloader.
-
 ## Journey
 
-I have been building my x64 playground OS, [ignisOS](https://github.com/ramonasuncion/ignisOS), on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.
+I have been building my x64 playground OS, [mangoOS](https://github.com/ramonasuncion/mangoOS), on and off for the past year. My goal was to understand everything about operating systems, from the boot process to user space.
 
 I started by reading the OSDev wiki on [rolling your own bootloader](https://wiki.osdev.org/Rolling_Your_Own_Bootloader), and it was quite a ride. I spent weeks trying to figure out why my string literals weren't working, only to discover I was just ONE sector off from reading the kernel even though everything else loaded correctly.
 
@@ -26,7 +25,7 @@ Call this what this is—skill issue. 🫠
 
 Well, you'll encounter issues like these when working on an OS. But this bootloader is far from being complete. What about file system support? Support for ELF? 🤔 You can spend all your time just working on the bootloader. That's where it hit me: is this where all my effort should go?
 
-In the end, I did get a somewhat working bootloader ([ignisOS-bootloader](https://github.com/ramonasuncion/ignisOS-bootloader)), but on the kernel side I only have a basic "Hello World."
+In the end, I did get a somewhat working bootloader (ignisOS-bootloader), but on the kernel side I only have a basic "Hello World."
 
 ```c
 #include "drivers/vga.h"

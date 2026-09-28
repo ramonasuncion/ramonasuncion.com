@@ -9,41 +9,22 @@
     <meta property="og:url" content="https://ramonasuncion.com/posts/making-the-switch-to-emacs/" />
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../../assets/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
   </head>
   <body>
-    <header>
-      <h1><a href="/">Ramon Asuncion</a></h1>
-      <nav>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-        <a href="/links/">Links</a>
-        <a href="/blogroll/">Blogroll</a>
-      </nav>
-    </header>
     <main>
       <article class="post">
-        <h2>Making the Switch to Emacs</h2>
-        <time>Feb 16, 2026</time>
+        <h1>Making the Switch to Emacs</h1>
+        <p class="subtitle">Moving from Neovim to Emacs, and the keybinds I use.</p>
+        <time>February 16, 2026</time>
         <div class="post-content"><p>I used <a href="https://neovim.io/">Neovim</a> throughout my undergrad. But I&#39;m making the switch to Emacs. Why? Why not. I&#39;m still going to use Vim for basic edits since I use Emacs in GUI mode, but for any sort of systems programming, I think I&#39;m going to give Emacs a try. I am hesitant to say full-time because I do still use VSCode for any sort of web development. But who knows. I might move that over too.</p>
 <p>If you plan on using my dotfiles they&#39;re on my <a href="https://github.com/ramonasuncion/.dotfiles">github</a>. Just remember to update:</p>
 <figure class="code-block"><pre><code><span class="line">M-<span class="hl-attribute">x</span> elpaca-update-<span class="hl-attribute">all</span></span></code></pre></figure><p>The keybinds I use:</p>
-<h2>Basics</h2>
+<h2 id="basics">Basics <a class="anchor" href="#basics" aria-label="Link to this section">&sect;</a></h2>
 <p>How I navigate in Emacs.</p>
 <ul>
 <li><code>C-x C-f</code>: open a file (you can create files too)</li>
@@ -59,7 +40,7 @@
 <li><code>C-x C-m</code>: execute command (M-x)</li>
 </ul>
 <p>Everything below isn&#39;t important for normal programming, but they are part of my workflow to make me a 100x developer with file navigation, git, and building and running.</p>
-<h2>File Navigation</h2>
+<h2 id="file-navigation">File Navigation <a class="anchor" href="#file-navigation" aria-label="Link to this section">&sect;</a></h2>
 <ul>
 <li><code>C-c e</code>: recent files</li>
 <li><code>C-c s</code>: search lines in buffer (consult-line)</li>
@@ -68,7 +49,7 @@
 <li><code>C-c f</code>: copy current file path</li>
 <li><code>C-c d</code>: copy current dir path</li>
 </ul>
-<h2>Dired</h2>
+<h2 id="dired">Dired <a class="anchor" href="#dired" aria-label="Link to this section">&sect;</a></h2>
 <p>If there is one thing I love in this world more than salted caramel, it&#39;s Dired.</p>
 <ul>
 <li><code>Enter</code>: open file/dir</li>
@@ -79,7 +60,7 @@
 <li><code>R</code>: rename/move</li>
 <li><code>C</code>: copy</li>
 </ul>
-<h2>Magit</h2>
+<h2 id="magit">Magit <a class="anchor" href="#magit" aria-label="Link to this section">&sect;</a></h2>
 <p>I&#39;m still opening up a separate terminal and using git from time to time. I&#39;ll learn this eventually.</p>
 <ul>
 <li><code>C-x g</code>: magit status</li>
@@ -92,7 +73,7 @@
 <li><code>l l</code>: log</li>
 <li><code>d d</code>: diff</li>
 </ul>
-<h2>Building and Running</h2>
+<h2 id="building-and-running">Building and Running <a class="anchor" href="#building-and-running" aria-label="Link to this section">&sect;</a></h2>
 <p>I&#39;m typically programming in C++ and C, so I set it up to build with Make/CMake.</p>
 <ul>
 <li><code>C-c b</code>: build project</li>
@@ -100,7 +81,7 @@
 <li><code>F7</code>: recompile</li>
 <li><code>C-c t</code>: open terminal in project root</li>
 </ul>
-<h2>Errors</h2>
+<h2 id="errors">Errors <a class="anchor" href="#errors" aria-label="Link to this section">&sect;</a></h2>
 <p>To hop between live LSP errors:</p>
 <ul>
 <li><code>]d/[d</code> next error / prev error</li>
@@ -111,27 +92,27 @@
 </ul>
 <p>I&#39;m leaving out multiple cursors since I&#39;m testing a set of keybinds.</p>
 </div>
+        <section class="read-next"><h2 class="label" id="read-next">Read Next <a class="anchor" href="#read-next" aria-label="Link to this section">&sect;</a></h2><ul class="list"><li><div><a href="/posts/syntax-is-a-trap/">Syntax is a Trap</a><p>Your language&apos;s semantics matter far more than its syntax.</p></div><time datetime="2026-02-13">February 13, 2026</time></li>
+<li><div><a href="/posts/what-are-quines/">What are Quines?</a><p>A program that prints its own source code, in two lines of Python.</p></div><time datetime="2026-01-26">January 26, 2026</time></li>
+<li><div><a href="/posts/not-building-bootloader/">Don&apos;t Build Your Own Bootloader</a><p>Why you should skip the bootloader and focus on the kernel.</p></div><time datetime="2025-12-01">December 1, 2025</time></li></ul></section>
       </article>
     </main>
     <footer>
-      <p class="footer-social-links">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/projects/">Projects</a>
+        <a href="/feed.xml">RSS</a>
+      </nav>
+      <p>&copy; 2025-2026 Ramon Asuncion Batista</p>
+      <p>
+        The source for this site is available under the
         <a
-          href="https://github.com/ramonasuncion"
+          href="https://github.com/ramonasuncion/ramonasuncion.com/blob/main/LICENSE"
           target="_blank"
           rel="noopener"
-          title="GitHub"
-        >
-          <i class="fab fa-github" aria-hidden="true"></i>
-          GitHub
-        </a>
-        <a href="mailto:asuncionbatista@gmail.com" title="Email">
-          <i class="fas fa-envelope" aria-hidden="true"></i>
-          Email
-        </a>
-        <a href="/feed.xml" title="Subscribe (RSS)">
-          <i class="fas fa-rss" aria-hidden="true"></i>
-          Subscribe (RSS)
-        </a>
+          >ISC License</a
+        >. Views expressed here are my own.
       </p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>

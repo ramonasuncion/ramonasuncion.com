@@ -1,24 +1,28 @@
 [
   {
     "title": "Making the Switch to Emacs",
+    "description": "Moving from Neovim to Emacs, and the keybinds I use.",
     "date": "2026-02-16",
     "slug": "making-the-switch-to-emacs",
     "url": "posts/making-the-switch-to-emacs/"
   },
   {
     "title": "Syntax is a Trap",
+    "description": "Your language's semantics matter far more than its syntax.",
     "date": "2026-02-13",
     "slug": "syntax-is-a-trap",
     "url": "posts/syntax-is-a-trap/"
   },
   {
     "title": "What are Quines?",
+    "description": "A program that prints its own source code, in two lines of Python.",
     "date": "2026-01-26",
     "slug": "what-are-quines",
     "url": "posts/what-are-quines/"
   },
   {
     "title": "Don't Build Your Own Bootloader",
+    "description": "Why you should skip the bootloader and focus on the kernel.",
     "date": "2025-12-01",
     "slug": "not-building-bootloader",
     "url": "posts/not-building-bootloader/"

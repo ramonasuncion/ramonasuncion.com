@@ -5,6 +5,7 @@ import { marked } from "marked";
 import hljs from "highlight.js";
 import sharp from "sharp";
 import { Feed } from "feed";
+import * as prettier from "prettier";
 
 hljs.configure({ classPrefix: "hl-" });
 
@@ -132,6 +133,22 @@ renderer.code = function (code) {
   }
   return highlight_code(code, "");
 };
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .replace(/<[^>]+>/g, "")
+    .replace(/&[a-z]+;/g, "")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+renderer.heading = function ({ tokens, depth, text }) {
+  const id = slugify(text);
+  const inner = this.parser.parseInline(tokens);
+  return `<h${depth} id="${id}">${inner} <a class="anchor" href="#${id}" aria-label="Link to this section">&sect;</a></h${depth}>\n`;
+};
+
 marked.use({ renderer });
 
 function generateRssFeed(posts) {
@@ -187,19 +204,37 @@ async function generateOgImage(title, outPath) {
   await sharp(Buffer.from(svg)).png().toFile(outPath);
 }
 
-function renderPostToHtml(meta, htmlContent, slug) {
-  const title = meta.title || "Untitled";
-  const date = meta.date || "";
-  const formattedDate = date
+function formatDate(date) {
+  return date
     ? parseDateLocal(date).toLocaleDateString("en-US", {
         year: "numeric",
-        month: "short",
+        month: "long",
         day: "numeric",
       })
     : "";
+}
+
+function renderReadNext(others) {
+  if (!others.length) return "";
+  const items = others
+    .map((p) => {
+      const desc = p.description ? `<p>${escape(p.description)}</p>` : "";
+      return `<li><div><a href="/${p.url}">${escape(p.title)}</a>${desc}</div><time datetime="${p.date}">${formatDate(p.date)}</time></li>`;
+    })
+    .join("\n");
+  return `<section class="read-next"><h2 class="label" id="read-next">Read Next <a class="anchor" href="#read-next" aria-label="Link to this section">&sect;</a></h2><ul class="list">${items}</ul></section>`;
+}
+
+function renderPostToHtml(meta, htmlContent, slug, readNext) {
+  const title = meta.title || "Untitled";
+  const subtitle = meta.description
+    ? `<p class="subtitle">${escape(meta.description)}</p>`
+    : "";
   return TEMPLATE.replace(/\{\{title\}\}/g, escape(title))
-    .replace("{{date}}", formattedDate)
+    .replace("{{subtitle}}", subtitle)
+    .replace("{{date}}", formatDate(meta.date || ""))
     .replace("{{content}}", htmlContent)
+    .replace("{{read_next}}", readNext)
     .replace("{{og_image}}", `${SITE_URL}/posts/${slug}/og.png`)
     .replace("{{og_url}}", `${SITE_URL}/posts/${slug}/`);
 }
@@ -220,21 +255,14 @@ async function build() {
     const slug =
       data.slug ||
       file.replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.md$/, "");
-    const html = marked(content);
-    const outDir = path.join(POSTS_DIR, slug);
-    fs.mkdirSync(outDir, { recursive: true });
-    fs.writeFileSync(
-      path.join(outDir, "index.html"),
-      renderPostToHtml({ ...data, date }, html, slug),
-      "utf8",
-    );
-    await generateOgImage(data.title || slug, path.join(outDir, "og.png"));
-
     posts.push({
       title: data.title || slug,
+      description: data.description || "",
       date,
       slug,
       url: `posts/${slug}/`,
+      data,
+      html: marked(content),
     });
   }
 
@@ -243,8 +271,58 @@ async function build() {
     const db = parseDateLocal(b.date);
     return (db ? db.getTime() : 0) - (da ? da.getTime() : 0);
   });
+
+  for (const post of posts) {
+    const outDir = path.join(POSTS_DIR, post.slug);
+    fs.mkdirSync(outDir, { recursive: true });
+    const readNext = renderReadNext(
+      posts.filter((p) => p.slug !== post.slug).slice(0, 3),
+    );
+    fs.writeFileSync(
+      path.join(outDir, "index.html"),
+      renderPostToHtml(
+        { ...post.data, date: post.date },
+        post.html,
+        post.slug,
+        readNext,
+      ),
+      "utf8",
+    );
+    await generateOgImage(post.title, path.join(outDir, "og.png"));
+  }
+
+  const index = posts.map(({ title, description, date, slug, url }) => ({
+    title,
+    description,
+    date,
+    slug,
+    url,
+  }));
   const indexPath = path.join(POSTS_DIR, "index.json");
-  fs.writeFileSync(indexPath, JSON.stringify(posts, null, 2), "utf8");
+  fs.writeFileSync(indexPath, JSON.stringify(index, null, 2), "utf8");
+
+  const homePath = path.join(process.cwd(), "index.html");
+  const home = fs.readFileSync(homePath, "utf8");
+  const recent = posts
+    .slice(0, 3)
+    .map((p) => {
+      const desc = p.description ? `<p>${escape(p.description)}</p>` : "";
+      return `        <li>
+          <div><a href="${p.url}">${escape(p.title)}</a>${desc}</div>
+          <time datetime="${p.date}">${formatDate(p.date)}</time>
+        </li>`;
+    })
+    .join("\n");
+  const updatedHome = home.replace(
+    /<!-- recent-posts -->[\s\S]*?<!-- \/recent-posts -->/,
+    `<!-- recent-posts -->\n      <ul class="list">\n${recent}\n      </ul>\n      <!-- /recent-posts -->`,
+  );
+  const prettierConfig = (await prettier.resolveConfig(homePath)) || {};
+  fs.writeFileSync(
+    homePath,
+    await prettier.format(updatedHome, { ...prettierConfig, parser: "html" }),
+    "utf8",
+  );
 
   const feedPath = path.join(process.cwd(), "feed.xml");
   fs.writeFileSync(feedPath, generateRssFeed(posts), "utf8");
