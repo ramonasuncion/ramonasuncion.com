@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramon Asuncion</title>
+    <link rel="icon" type="image/png" href="asset/favicon.png" />
+    <link rel="stylesheet" href="asset/styles.css" />
+  </head>
+  <body class="portfolio">
+    <main>
+      <header>
+        <h1>Ramon Asuncion</h1>
+      </header>
+      <section aria-labelledby="about">
+        <div class="section-heading">
+          <span class="art-crop"><img class="hassam" src="asset/south-ledges-appledore.jpg" width="96" height="96" alt="" /></span>
+          <h2 id="about">About</h2>
+        </div>
+        <div class="section-content">
+          <p>I'm a programmer working on systems software and programming languages. I also love cars, music, and astronomy.</p>
+          <p>I also publish work through <a href="https://subrange.github.io/">Subrange</a>, <a href="https://intelligentsandbox.github.io/">Intelligent Sandbox</a>, and <a href="https://www.ripe-lang.org/">Ripe</a>.</p>
+        </div>
+      </section>
+      <section aria-labelledby="projects">
+        <div class="section-heading">
+          <span class="art-crop"><img class="van-gogh" src="asset/wheat-field-with-cypresses.jpg" width="96" height="96" alt="" /></span>
+          <h2 id="projects">Projects</h2>
+        </div>
+        <div class="section-content">
+          <div class="project-group">
+            <h3>Programming languages</h3>
+            <dl>
+              <div>
+                <dt><a href="https://github.com/ripe-lang/ripe">Ripe</a></dt>
+                <dd>A systems programming language with a compiler written in OCaml. Supports structs, enums, modules, and pattern matching with QBE and x86 backends.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/subrange/ceramic">Ceramic</a></dt>
+                <dd>My continuation of Clay for generic programming. Includes work on compiler diagnostics and C binding generation.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/subrange/aurum">Aurum</a></dt>
+                <dd>A stack based language with an interpreter written in C. Supports loops, macros, and direct memory operations.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/subrange/expression">Expression</a></dt>
+                <dd>An OCaml interpreter for an esoteric language that uses emoticons as syntax. Supports variables, conditionals, and loops.</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="project-group">
+            <h3>Systems and tools</h3>
+            <dl>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/mangoOS">mangoOS</a></dt>
+                <dd>A hobby x64 kernel written in C. Boots with Limine and implements interrupt handling, serial output, and framebuffer text.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/fulmen">fulmen</a></dt>
+                <dd>A small Linux container runtime with a command line interface and desktop UI. Pulls container images and runs commands using Linux namespaces.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/lumina.h">lumina.h</a></dt>
+                <dd>A C library for reading and writing PPM images. Supports grayscale conversion and color inversion.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/cryptus">cryptus</a></dt>
+                <dd>A command line file encryption tool written in Rust. Uses AES 256 GCM with a password or key file.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/subrange/nag">nag</a></dt>
+                <dd>An offline todo tracker with a postfix command language. Stores issues in the project directory with tags, priorities, and dependencies.</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="project-group">
+            <h3>Embedded</h3>
+            <dl>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/plftool">plftool</a></dt>
+                <dd>A toolkit for inspecting, extracting, and rebuilding Parrot drone firmware. Developed while researching the Airborne Night firmware.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/ldr-tracking-software-production">LDR Tracking</a></dt>
+                <dd>A Flask dashboard for light sensor readings from Raspberry Pi Pico W devices. Reads recorded measurements from CSV files and charts them over time.</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="project-group">
+            <h3>AI</h3>
+            <dl>
+              <div>
+                <dt><a href="https://github.com/ramonlabs/echo">Echo</a></dt>
+                <dd>A Live2D AI VTuber built from separate services for speech recognition, language generation, memory, voice synthesis, and avatar rendering.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/IntelligentSandbox/tts">TTS</a></dt>
+                <dd>A local speech synthesis service using Piper and Kokoro. Includes voice profiles, sound effects, and a web interface.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/IntelligentSandbox/sniper">Sniper</a></dt>
+                <dd>A GitHub App that reviews pull requests with language models and posts comments on changed lines. Built with Chang Min Bark and Joshua Lee.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/IntelligentSandbox/autovia">Autovia</a></dt>
+                <dd>A web app for semantic segmentation of road images and video using a model trained on Cityscapes. Built with Santiago Hernandez and Warren Wang.</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="project-group">
+            <h3>Applications</h3>
+            <dl>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/astrocord">Astrocord</a></dt>
+                <dd>A Discord bot written in J with a Python proxy for HTTPS and WebSocket connections.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/findmyadvisor">FindMyAdvisor</a></dt>
+                <dd>A dashboard for finding research advisors by topic. Combines faculty profiles, publications, coauthor networks, and a contact shortlist using MySQL, MongoDB, and Neo4j.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/ticketme-production">TicketMe</a></dt>
+                <dd>A Phoenix LiveView app for monitoring and controlling Raspberry Pis. Shows device metrics, streams logs, and sends commands over WebSockets.</dd>
+              </div>
+              <div>
+                <dt><a href="https://github.com/ramonasuncion/city-watch">City Watch</a></dt>
+                <dd>A Flask app for exploring Chicago crime reports and testing dispatch recommendations. Uses AVL trees and a priority queue to organize reports.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div class="footer-contact">
+          <span class="art-crop"><img src="asset/port-of-cassis.jpg" width="96" height="96" alt="" /></span>
+          <p>Get in touch: <a href="mailto:asuncionbatista@gmail.com">asuncionbatista@gmail.com</a></p>
+        </div>
+        <p class="art-credits">Artwork: <a href="https://americanart.si.edu/artwork/south-ledges-appledore-10086">Childe Hassam</a>, <a href="https://www.metmuseum.org/art/collection/search/436535">Vincent van Gogh</a>, and <a href="https://collection.nmwa.go.jp/en/P.1959-0160.html">Adolphe Monticelli</a>.</p>
+        <p class="copyright">© 2026 Ramon Asuncion</p>
+      </footer>
+    </main>
+  </body>
+</html>
