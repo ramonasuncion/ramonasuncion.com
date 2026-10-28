@@ -25,12 +25,46 @@ body {
   line-height: 1.15;
 }
 
+.portfolio .epigraph {
+  margin: -12px 0 0;
+  color: #555;
+}
+
+.portfolio .epigraph blockquote {
+  margin: 0;
+  font-style: italic;
+}
+
+.portfolio .epigraph figcaption {
+  font-size: 16px;
+}
+
+.portfolio .epigraph figcaption::before {
+  content: "— ";
+}
+
+.portfolio .indy-1913 {
+  object-position: 50% 75%;
+  transform-origin: 40% 68%;
+  transform: scale(1.9);
+}
+
+.portfolio .de-de {
+  object-position: 50% 100%;
+  transform-origin: 43% 15%;
+  transform: scale(1.3);
+}
+
 .portfolio .section-content p {
   margin: 0;
 }
 
 .portfolio section {
   margin-top: 38px;
+}
+
+.portfolio .section-content .more-work {
+  margin-top: 32px;
 }
 
 .portfolio h2 {
@@ -45,17 +79,6 @@ body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px 36px;
   margin: 0;
-}
-
-.portfolio .project-group + .project-group {
-  margin-top: 32px;
-}
-
-.portfolio .project-group h3 {
-  margin: 0 0 14px;
-  font-size: 26px;
-  font-weight: normal;
-  line-height: 1.3;
 }
 
 .portfolio dt {
@@ -88,16 +111,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.portfolio .hassam {
-  object-position: 65% 35%;
-  transform: scale(1.65);
-}
-
-.portfolio .van-gogh {
-  object-position: 70% 55%;
-  transform: scale(1.4);
 }
 
 .portfolio footer {
@@ -146,12 +159,5 @@ body {
 }
 
 .portfolio .footer-contact {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.portfolio .footer-contact p {
-  min-width: 0;
   overflow-wrap: anywhere;
 }
